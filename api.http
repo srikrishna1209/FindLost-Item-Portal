@@ -1,0 +1,205 @@
+####################################################
+### LOST AND FOUND PORTAL - API TESTING FILE
+####################################################
+
+####################################################
+### CREATE ITEM
+####################################################
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Bag",
+    "description": "Blue School Bag",
+    "location": "Library",
+    "status": "LOST"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Phone",
+    "description": "Samsung Galaxy",
+    "location": "Canteen",
+    "status": "FOUND"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Wallet",
+    "description": "Brown Leather Wallet",
+    "location": "Library",
+    "status": "LOST"
+}
+
+####################################################
+### VALIDATION TEST (Should Return 400)
+####################################################
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "",
+    "description": "",
+    "location": "",
+    "status": ""
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Laptop",
+    "description": "Dell Inspiron Laptop",
+    "location": "Computer Lab",
+    "status": "LOST"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Watch",
+    "description": "Black Titan Watch",
+    "location": "Auditorium",
+    "status": "FOUND"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "ID Card",
+    "description": "Student ID Card",
+    "location": "Library",
+    "status": "LOST"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Keys",
+    "description": "Bike Keys",
+    "location": "Parking Area",
+    "status": "FOUND"
+}
+
+###
+
+POST http://localhost:8080/api/items
+Content-Type: application/json
+
+{
+    "itemName": "Water Bottle",
+    "description": "Blue Milton Bottle",
+    "location": "Classroom",
+    "status": "LOST"
+}
+
+####################################################
+### GET ALL ITEMS
+####################################################
+
+###
+
+GET http://localhost:8080/api/items
+
+####################################################
+### GET ITEM BY ID
+####################################################
+
+###
+
+GET http://localhost:8080/api/items/1
+
+####################################################
+### UPDATE ITEM
+####################################################
+
+###
+
+PUT http://localhost:8080/api/items/1
+Content-Type: application/json
+
+{
+    "itemName": "Updated Wallet",
+    "description": "Wallet with ID Cards",
+    "location": "Main Block",
+    "status": "FOUND"
+}
+
+####################################################
+### DELETE ITEM
+####################################################
+
+###
+
+DELETE http://localhost:8080/api/items/1
+
+####################################################
+### SEARCH BY ITEM NAME
+####################################################
+
+###
+
+GET http://localhost:8080/api/items/search/name?itemName=Bag
+
+####################################################
+### SEARCH BY LOCATION
+####################################################
+
+###
+
+GET http://localhost:8080/api/items/search/location?location=Library
+
+####################################################
+### PAGINATION
+####################################################
+
+###
+
+GET http://localhost:8080/api/items/page?page=0&size=2
+
+###
+
+GET http://localhost:8080/api/items/page?page=1&size=2
+
+####################################################
+### SORTING
+####################################################
+
+###
+
+GET http://localhost:8080/api/items/sort?field=itemName
+
+###
+
+GET http://localhost:8080/api/items/sort?field=itemName&direction=desc
+
+###
+
+GET http://localhost:8080/api/items/sort?field=location
+
+###
+
+GET http://localhost:8080/api/items/sort?field=id&direction=desc
