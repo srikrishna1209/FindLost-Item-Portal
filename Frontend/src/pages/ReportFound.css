@@ -1,0 +1,1139 @@
+/* =========================================
+   FINDLOST REPORT FOUND ITEM PAGE
+   Based directly on Report Lost design
+========================================= */
+
+.found-report-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 65px 6% 70px;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(232, 111, 85, 0.10),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 92% 72%,
+      rgba(75, 170, 120, 0.14),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 85% 18%,
+      rgba(250, 228, 168, 0.38),
+      transparent 20%
+    ),
+    #fffdfa;
+
+  color: #182844;
+}
+
+
+/* =========================================
+   DECORATION
+========================================= */
+
+.found-report-shape {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.found-report-shape-one {
+  width: 210px;
+  height: 210px;
+
+  top: -95px;
+  right: 12%;
+
+  background: rgba(250, 228, 168, 0.45);
+}
+
+
+.found-report-shape-two {
+  width: 125px;
+  height: 125px;
+
+  bottom: 9%;
+  left: -45px;
+
+  background: rgba(75, 170, 120, 0.12);
+}
+
+
+.found-report-dots {
+  position: absolute;
+
+  right: 4%;
+  top: 25%;
+
+  color: #79b28f;
+
+  font-size: 23px;
+
+  line-height: 0.65;
+
+  letter-spacing: 5px;
+
+  transform: rotate(25deg);
+
+  opacity: 0.65;
+}
+
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.found-report-wrapper {
+  width: 100%;
+
+  max-width: 1160px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.found-report-intro {
+  max-width: 760px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+
+.found-report-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 15px;
+
+  border-radius: 50px;
+
+  background: #e9f5ed;
+
+  color: #4a9167;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+
+.found-report-badge span {
+  font-size: 12px;
+
+  color: #d8a04b;
+}
+
+
+.found-report-intro h1 {
+  margin: 20px 0 16px;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 5vw, 62px);
+
+  line-height: 1.02;
+
+  letter-spacing: -2.5px;
+}
+
+
+.found-report-intro h1 span {
+  color: #e86f55;
+}
+
+
+.found-report-intro p {
+  max-width: 570px;
+
+  margin: 0 auto;
+
+  color: #738096;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+.found-report-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(280px, 0.7fr);
+
+  gap: 30px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.found-report-card {
+  padding: 38px;
+
+  border: 1px solid #ebe6de;
+
+  border-radius: 25px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 60px rgba(24, 40, 68, 0.07);
+}
+
+
+.found-report-card-heading {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+}
+
+
+.found-mini-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #e86f55;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+
+.found-report-card-heading h2 {
+  margin: 0;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 28px;
+
+  letter-spacing: -0.7px;
+}
+
+
+.found-report-number {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #e8f4ec;
+
+  color: #4a9167;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.found-report-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 23px;
+}
+
+
+.found-report-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+
+.found-report-field label {
+  color: #182844;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+.found-report-field label span {
+  margin-left: 4px;
+
+  color: #e86f55;
+}
+
+
+.found-field-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.found-field-heading small {
+  color: #98a1b0;
+
+  font-size: 10px;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.found-report-field input,
+.found-report-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dfe4ea;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #fbfaf7;
+
+  color: #182844;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.found-report-field input {
+  height: 52px;
+
+  padding: 0 16px;
+}
+
+
+.found-report-field textarea {
+  min-height: 125px;
+
+  padding: 14px 16px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+
+.found-report-field input::placeholder,
+.found-report-field textarea::placeholder {
+  color: #a0a9b7;
+}
+
+
+.found-report-field input:focus,
+.found-report-field textarea:focus {
+  border-color: #e86f55;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(232, 111, 85, 0.09);
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.found-location-input {
+  position: relative;
+}
+
+
+.found-location-input > span {
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #e86f55;
+
+  font-size: 18px;
+
+  pointer-events: none;
+}
+
+
+.found-location-input input {
+  padding-left: 44px;
+}
+
+
+/* =========================================
+   IMAGE UPLOAD
+========================================= */
+
+.found-upload-area {
+  min-height: 150px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1.5px dashed #d6dcd9;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5fbf6 0%,
+      #fbfaf7 100%
+    );
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.found-upload-area:hover {
+  border-color: #72ad8b;
+
+  background: #f1f9f4;
+
+  transform: translateY(-1px);
+}
+
+
+.found-upload-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.found-upload-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 4px;
+
+  border-radius: 12px;
+
+  background: #e4f3e9;
+
+  color: #4a9b6e;
+
+  font-size: 25px;
+
+  font-weight: 300;
+}
+
+
+.found-upload-content strong {
+  color: #3e4c61;
+
+  font-size: 13px;
+}
+
+
+.found-upload-content span {
+  color: #8b96a6;
+
+  font-size: 10px;
+}
+
+
+.found-upload-area.has-image {
+  min-height: 230px;
+
+  border-style: solid;
+
+  background: #f6f4ef;
+}
+
+
+.found-image-preview {
+  width: 100%;
+  height: 230px;
+
+  position: relative;
+}
+
+
+.found-image-preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.found-change-photo {
+  position: absolute;
+
+  left: 50%;
+  bottom: 15px;
+
+  transform: translateX(-50%);
+
+  padding: 8px 14px;
+
+  border-radius: 30px;
+
+  background: rgba(24, 40, 68, 0.86);
+
+  color: white;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.found-status-preview {
+  padding: 15px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid #cfe4d5;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f1f9f3 0%,
+      #fffaf3 100%
+    );
+}
+
+
+.found-status-icon {
+  width: 35px;
+  height: 35px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #dff0e5;
+
+  color: #469367;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+
+.found-status-preview strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #38465a;
+
+  font-size: 12px;
+}
+
+
+.found-status-preview p {
+  margin: 0;
+
+  color: #8b96a5;
+
+  font-size: 10px;
+}
+
+
+.found-status-preview p span {
+  color: #4a9167;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.found-report-message {
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+.found-report-error {
+  border: 1px solid #f1c5bb;
+
+  background: #fff1ed;
+
+  color: #c5543d;
+}
+
+
+.found-report-success {
+  border: 1px solid #b8dcc6;
+
+  background: #edf8f1;
+
+  color: #32774f;
+}
+
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+.found-report-submit {
+  width: 100%;
+
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-top: 2px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #e86f55;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 25px rgba(232, 111, 85, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.found-report-submit:hover {
+  background: #db6249;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 30px rgba(232, 111, 85, 0.27);
+}
+
+
+.found-report-submit span {
+  font-size: 20px;
+
+  font-weight: 400;
+}
+
+
+.found-report-submit:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.found-report-side {
+  position: sticky;
+
+  top: 30px;
+}
+
+
+/* =========================================
+   SIDE CARD
+========================================= */
+
+.found-side-card {
+  padding: 25px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(250, 228, 168, 0.85),
+      transparent 35%
+    ),
+    #edf5f1;
+
+  border: 1px solid #dce9e1;
+
+  box-shadow:
+    0 20px 45px rgba(24, 40, 68, 0.05);
+}
+
+
+.found-side-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.found-side-card-top > span {
+  padding: 7px 10px;
+
+  border-radius: 30px;
+
+  background: #e86f55;
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.found-side-star {
+  color: #e8a453;
+
+  font-size: 22px;
+}
+
+
+/* =========================================
+   FOUND ILLUSTRATION
+========================================= */
+
+.found-side-illustration {
+  height: 260px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.found-circle-back {
+  width: 205px;
+  height: 205px;
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: #f9dda0;
+
+  opacity: 0.75;
+}
+
+
+.found-phone-shape {
+  width: 105px;
+  height: 195px;
+
+  position: relative;
+
+  z-index: 2;
+
+  overflow: hidden;
+
+  border: 6px solid #182844;
+
+  border-radius: 20px;
+
+  background: #e9f3f6;
+
+  transform: rotate(8deg);
+
+  box-shadow:
+    0 20px 35px rgba(24, 40, 68, 0.18);
+}
+
+
+.found-phone-camera {
+  width: 25px;
+  height: 8px;
+
+  position: absolute;
+
+  top: 8px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 20px;
+
+  background: #182844;
+}
+
+
+.found-phone-screen {
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #4a9b6e;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 55px;
+}
+
+
+/* =========================================
+   SIDE MESSAGE
+========================================= */
+
+.found-side-message {
+  position: relative;
+
+  z-index: 3;
+
+  padding: 20px;
+
+  border-radius: 17px;
+
+  background: rgba(255, 255, 255, 0.80);
+
+  backdrop-filter: blur(8px);
+}
+
+
+.found-side-message h3 {
+  margin: 0 0 8px;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 23px;
+}
+
+
+.found-side-message p {
+  margin: 0;
+
+  color: #718096;
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   HELPFUL NOTE
+========================================= */
+
+.found-side-note {
+  margin-top: 15px;
+
+  padding: 16px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  border: 1px solid #ebe6de;
+
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 25px rgba(24, 40, 68, 0.05);
+}
+
+
+.found-note-check {
+  width: 31px;
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #e5f3e9;
+
+  color: #439667;
+
+  font-size: 15px;
+
+  font-weight: 800;
+}
+
+
+.found-side-note strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #38465a;
+
+  font-size: 11px;
+}
+
+
+.found-side-note p {
+  margin: 0;
+
+  color: #8791a1;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.found-report-footer-message {
+  margin-top: 35px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #8a94a4;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 13px;
+
+  font-style: italic;
+}
+
+
+.found-report-footer-message span {
+  color: #e86f55;
+
+  font-style: normal;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .found-report-layout {
+    grid-template-columns: 1fr;
+  }
+
+
+  .found-report-side {
+    position: relative;
+
+    top: auto;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    width: 100%;
+  }
+
+
+  .found-side-illustration {
+    height: 230px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .found-report-page {
+    padding: 45px 16px 55px;
+  }
+
+
+  .found-report-intro {
+    margin-bottom: 30px;
+  }
+
+
+  .found-report-intro h1 {
+    font-size: 40px;
+
+    letter-spacing: -1.5px;
+  }
+
+
+  .found-report-card {
+    padding: 25px 20px;
+
+    border-radius: 20px;
+  }
+
+
+  .found-report-card-heading h2 {
+    font-size: 23px;
+  }
+
+
+  .found-field-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+
+  .found-report-shape-one {
+    right: -100px;
+  }
+
+
+  .found-report-dots {
+    display: none;
+  }
+}

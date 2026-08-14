@@ -1,17 +1,28 @@
 package com.krishna.lostfoundportal.config;
 
 import com.krishna.lostfoundportal.security.JwtAuthenticationFilter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @Configuration
 public class SecurityConfig {
@@ -23,46 +34,117 @@ public class SecurityConfig {
     }
 
     @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    http
-            .csrf(csrf -> csrf.disable())
-            .cors(Customizer.withDefaults())
-            .sessionManagement(session ->
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        http
+                // Disable CSRF because we are using JWT authentication
+                .csrf(csrf -> csrf.disable())
 
-            .authorizeHttpRequests(auth -> auth
+                // Enable CORS
+                .cors(cors ->
+                        cors.configurationSource(corsConfigurationSource())
+                )
 
-                    .requestMatchers(
-                      "/api/users/register",
-                      "/api/users/login",
-                      "/uploads/**",
+                // JWT authentication = stateless
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
 
-        // Swagger
-                     "/swagger-ui/**",
-                     "/v3/api-docs/**",
-                     "/swagger-ui.html"
-                ).permitAll()
+                .authorizeHttpRequests(auth -> auth
 
-                    .requestMatchers("/api/admin/**")
-                    .hasRole("ADMIN")
+                        // Allow browser CORS preflight requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                    .requestMatchers(
-                            "/api/items",
-                            "/api/items/**"
-                    ).hasAnyRole("USER", "ADMIN")
+                        // Public endpoints
+                        .requestMatchers(
+                                "/api/users/register",
+                                "/api/users/login",
+                                "/uploads/**",
 
-                    .anyRequest()
-                    .authenticated()
-            )
+                                // Swagger
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html"
+                        ).permitAll()
 
-            .addFilterBefore(
-                    jwtAuthenticationFilter,
-                    UsernamePasswordAuthenticationFilter.class
-            );
+                        // Admin endpoints
+                        .requestMatchers("/api/admin/**")
+                        .hasRole("ADMIN")
 
-    return http.build();
-}
+                        // Item endpoints
+                        .requestMatchers(
+                                "/api/items",
+                                "/api/items/**"
+                        )
+                        .hasAnyRole("USER", "ADMIN")
+
+                        // Everything else requires authentication
+                        .anyRequest()
+                        .authenticated()
+                )
+
+                // JWT filter
+                .addFilterBefore(
+                        jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class
+                );
+
+        return http.build();
+    }
+
+    /*
+     * Completely bypass Spring Security for uploaded files.
+     * This allows the browser to directly open:
+     *
+     * http://localhost:8080/uploads/filename.jpg
+     */
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return web -> web.ignoring()
+                .requestMatchers("/uploads/**");
+    }
+
+    /**
+     * CORS configuration for React frontend.
+     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        // React/Vite frontend
+        configuration.setAllowedOrigins(
+                Arrays.asList("http://localhost:5173")
+        );
+
+        // HTTP methods allowed from frontend
+        configuration.setAllowedMethods(
+                Arrays.asList(
+                        "GET",
+                        "POST",
+                        "PUT",
+                        "DELETE",
+                        "OPTIONS"
+                )
+        );
+
+        // Allow request headers such as Authorization and Content-Type
+        configuration.setAllowedHeaders(
+                Arrays.asList("*")
+        );
+
+        // Allow cookies/credentials if needed
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
+        // Apply CORS configuration to all backend endpoints
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

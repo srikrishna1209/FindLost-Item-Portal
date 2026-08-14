@@ -1,0 +1,1021 @@
+/* =========================================
+   FINDLOST REPORT ITEM PAGE
+========================================= */
+
+.report-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 65px 6% 70px;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(232, 111, 85, 0.10),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 92% 72%,
+      rgba(75, 170, 120, 0.12),
+      transparent 24%
+    ),
+    #fffdfa;
+
+  color: #182844;
+}
+
+
+/* =========================================
+   DECORATION
+========================================= */
+
+.report-shape {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.report-shape-one {
+  width: 210px;
+  height: 210px;
+
+  top: -95px;
+  right: 12%;
+
+  background: rgba(250, 228, 168, 0.45);
+}
+
+.report-shape-two {
+  width: 120px;
+  height: 120px;
+
+  bottom: 9%;
+  left: -45px;
+
+  background: rgba(75, 170, 120, 0.10);
+}
+
+.report-dots {
+  position: absolute;
+
+  right: 4%;
+  top: 25%;
+
+  color: #e98b72;
+
+  font-size: 23px;
+
+  line-height: 0.65;
+
+  letter-spacing: 5px;
+
+  transform: rotate(25deg);
+
+  opacity: 0.7;
+}
+
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.report-wrapper {
+  width: 100%;
+  max-width: 1160px;
+
+  margin: 0 auto;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.report-intro {
+  max-width: 760px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+.report-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 9px 15px;
+
+  border-radius: 50px;
+
+  background: #fff0eb;
+
+  color: #d86149;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.report-badge span {
+  font-size: 12px;
+}
+
+.report-intro h1 {
+  margin: 20px 0 16px;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(42px, 5vw, 62px);
+
+  line-height: 1.02;
+
+  letter-spacing: -2.5px;
+}
+
+.report-intro h1 span {
+  color: #e86f55;
+}
+
+.report-intro p {
+  max-width: 570px;
+
+  margin: 0 auto;
+
+  color: #738096;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   LAYOUT
+========================================= */
+
+.report-layout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+
+  gap: 30px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   FORM CARD
+========================================= */
+
+.report-card {
+  padding: 38px;
+
+  border: 1px solid #ebe6de;
+
+  border-radius: 25px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 60px rgba(24, 40, 68, 0.07);
+}
+
+.report-card-heading {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+}
+
+.mini-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #e86f55;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+.report-card-heading h2 {
+  margin: 0;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 28px;
+
+  letter-spacing: -0.7px;
+}
+
+.report-number {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #fff1ec;
+
+  color: #e86f55;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.report-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 23px;
+}
+
+.report-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.report-field label {
+  color: #182844;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.report-field label span {
+  margin-left: 4px;
+
+  color: #e86f55;
+}
+
+.field-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.field-heading small {
+  color: #98a1b0;
+
+  font-size: 10px;
+}
+
+.report-field input,
+.report-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dfe4ea;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #fbfaf7;
+
+  color: #182844;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.report-field input {
+  height: 52px;
+
+  padding: 0 16px;
+}
+
+.report-field textarea {
+  min-height: 125px;
+
+  padding: 14px 16px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.report-field input::placeholder,
+.report-field textarea::placeholder {
+  color: #a0a9b7;
+}
+
+.report-field input:focus,
+.report-field textarea:focus {
+  border-color: #e86f55;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(232, 111, 85, 0.09);
+}
+
+
+/* =========================================
+   LOCATION
+========================================= */
+
+.location-input {
+  position: relative;
+}
+
+.location-input > span {
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #e86f55;
+
+  font-size: 18px;
+
+  pointer-events: none;
+}
+
+.location-input input {
+  padding-left: 44px;
+}
+
+
+/* =========================================
+   IMAGE UPLOAD
+========================================= */
+
+.upload-area {
+  min-height: 150px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border: 1.5px dashed #d6dcd9;
+
+  border-radius: 15px;
+
+  background: #f8fbf8;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.upload-area:hover {
+  border-color: #72ad8b;
+
+  background: #f1f9f4;
+
+  transform: translateY(-1px);
+}
+
+.upload-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+.upload-icon {
+  width: 43px;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 4px;
+
+  border-radius: 12px;
+
+  background: #e4f3e9;
+
+  color: #4a9b6e;
+
+  font-size: 25px;
+
+  font-weight: 300;
+}
+
+.upload-content strong {
+  color: #3e4c61;
+
+  font-size: 13px;
+}
+
+.upload-content span {
+  color: #8b96a6;
+
+  font-size: 10px;
+}
+
+.upload-area.has-image {
+  min-height: 230px;
+
+  border-style: solid;
+
+  background: #f6f4ef;
+}
+
+.image-preview {
+  width: 100%;
+  height: 230px;
+
+  position: relative;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.change-photo {
+  position: absolute;
+
+  left: 50%;
+  bottom: 15px;
+
+  transform: translateX(-50%);
+
+  padding: 8px 14px;
+
+  border-radius: 30px;
+
+  background: rgba(24, 40, 68, 0.86);
+
+  color: white;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status-preview {
+  padding: 15px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid #f1d7cd;
+
+  border-radius: 13px;
+
+  background: #fff8f5;
+}
+
+.status-icon {
+  width: 35px;
+  height: 35px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #ffe2d9;
+
+  color: #d96048;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+.status-preview strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #38465a;
+
+  font-size: 12px;
+}
+
+.status-preview p {
+  margin: 0;
+
+  color: #8b96a5;
+
+  font-size: 10px;
+}
+
+.status-preview p span {
+  color: #d86149;
+
+  font-weight: 800;
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
+
+.report-message {
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+.report-error {
+  border: 1px solid #f1c5bb;
+
+  background: #fff1ed;
+
+  color: #c5543d;
+}
+
+.report-success {
+  border: 1px solid #b8dcc6;
+
+  background: #edf8f1;
+
+  color: #32774f;
+}
+
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+.report-submit {
+  width: 100%;
+
+  min-height: 55px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-top: 2px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #e86f55;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 25px rgba(232, 111, 85, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.report-submit:hover {
+  background: #db6249;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 16px 30px rgba(232, 111, 85, 0.27);
+}
+
+.report-submit span {
+  font-size: 20px;
+
+  font-weight: 400;
+}
+
+.report-submit:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================
+   RIGHT SIDE
+========================================= */
+
+.report-side {
+  position: sticky;
+
+  top: 30px;
+}
+
+.side-card {
+  padding: 25px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  border-radius: 24px;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(250, 228, 168, 0.8),
+      transparent 35%
+    ),
+    #edf5f1;
+
+  border: 1px solid #dce9e1;
+}
+
+.side-card-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.side-card-top > span {
+  padding: 7px 10px;
+
+  border-radius: 30px;
+
+  background: #e86f55;
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.side-star {
+  color: #e8a453;
+
+  font-size: 22px;
+}
+
+
+/* =========================================
+   PHONE ILLUSTRATION
+========================================= */
+
+.side-illustration {
+  height: 260px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-back {
+  width: 205px;
+  height: 205px;
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  background: #f9dda0;
+
+  opacity: 0.75;
+}
+
+.phone-shape {
+  width: 105px;
+  height: 195px;
+
+  position: relative;
+  z-index: 2;
+
+  overflow: hidden;
+
+  border: 6px solid #182844;
+
+  border-radius: 20px;
+
+  background: #e9f3f6;
+
+  transform: rotate(8deg);
+
+  box-shadow:
+    0 20px 35px rgba(24, 40, 68, 0.18);
+}
+
+.phone-camera {
+  width: 25px;
+  height: 8px;
+
+  position: absolute;
+
+  top: 8px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border-radius: 20px;
+
+  background: #182844;
+}
+
+.phone-screen {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #e86f55;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 55px;
+}
+
+
+/* =========================================
+   SIDE MESSAGE
+========================================= */
+
+.side-message {
+  position: relative;
+  z-index: 3;
+
+  padding: 20px;
+
+  border-radius: 17px;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  backdrop-filter: blur(8px);
+}
+
+.side-message h3 {
+  margin: 0 0 8px;
+
+  color: #182844;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 23px;
+}
+
+.side-message p {
+  margin: 0;
+
+  color: #718096;
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   HELPFUL TIP
+========================================= */
+
+.side-note {
+  margin-top: 15px;
+
+  padding: 16px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  border: 1px solid #ebe6de;
+
+  border-radius: 15px;
+
+  background: white;
+
+  box-shadow:
+    0 10px 25px rgba(24, 40, 68, 0.05);
+}
+
+.note-check {
+  width: 31px;
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #e5f3e9;
+
+  color: #439667;
+
+  font-size: 15px;
+
+  font-weight: 800;
+}
+
+.side-note strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #38465a;
+
+  font-size: 11px;
+}
+
+.side-note p {
+  margin: 0;
+
+  color: #8791a1;
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   FOOTER MESSAGE
+========================================= */
+
+.report-footer-message {
+  margin-top: 35px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  color: #8a94a4;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 13px;
+
+  font-style: italic;
+}
+
+.report-footer-message span {
+  color: #e86f55;
+
+  font-style: normal;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+  .report-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .report-side {
+    position: relative;
+
+    top: auto;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    width: 100%;
+  }
+
+  .side-illustration {
+    height: 230px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .report-page {
+    padding: 45px 16px 55px;
+  }
+
+  .report-intro {
+    margin-bottom: 30px;
+  }
+
+  .report-intro h1 {
+    font-size: 40px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .report-card {
+    padding: 25px 20px;
+
+    border-radius: 20px;
+  }
+
+  .report-card-heading h2 {
+    font-size: 23px;
+  }
+
+  .field-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .report-shape-one {
+    right: -100px;
+  }
+
+  .report-dots {
+    display: none;
+  }
+}

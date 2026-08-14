@@ -1,0 +1,1393 @@
+/* =========================================================
+   FINDLOST — LOST ITEMS PAGE
+   Elegant / colorful / warm / connected to home page
+   ========================================================= */
+
+.lost-items-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 82% 18%,
+      rgba(255, 224, 170, 0.34),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 12% 35%,
+      rgba(225, 241, 235, 0.55),
+      transparent 26%
+    ),
+    #fffaf5;
+
+  color: #17233f;
+}
+
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+   ========================================================= */
+
+.lost-bg-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.lost-bg-shape-one {
+  width: 240px;
+  height: 240px;
+
+  top: 80px;
+  right: -80px;
+
+  background: rgba(255, 218, 169, 0.24);
+}
+
+.lost-bg-shape-two {
+  width: 180px;
+  height: 180px;
+
+  top: 560px;
+  left: -90px;
+
+  background: rgba(217, 239, 228, 0.28);
+}
+
+.lost-bg-shape-three {
+  width: 130px;
+  height: 130px;
+
+  top: 900px;
+  right: 12%;
+
+  background: rgba(227, 238, 248, 0.3);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.lost-items-hero {
+  position: relative;
+  z-index: 1;
+
+  width: min(1160px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  min-height: 590px;
+
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  align-items: center;
+
+  gap: 70px;
+
+  padding: 75px 0 60px;
+}
+
+
+/* LEFT */
+
+.lost-hero-content {
+  max-width: 590px;
+}
+
+.lost-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 10px 16px;
+
+  margin-bottom: 24px;
+
+  border-radius: 999px;
+
+  background: #e8f4ed;
+
+  color: #277457;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.7px;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #55a879;
+}
+
+.lost-hero-content h1 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(52px, 5.2vw, 76px);
+
+  line-height: 0.98;
+
+  font-weight: 700;
+
+  letter-spacing: -3.2px;
+}
+
+.lost-hero-content h1 span {
+  color: #df7558;
+}
+
+.lost-hero-description {
+  max-width: 520px;
+
+  margin: 28px 0 30px;
+
+  color: #64728b;
+
+  font-size: 17px;
+
+  line-height: 1.75;
+}
+
+
+/* HERO BUTTONS */
+
+.lost-hero-actions {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.lost-primary-button,
+.lost-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  min-height: 55px;
+
+  padding: 0 22px;
+
+  border-radius: 13px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.lost-primary-button {
+  min-width: 215px;
+
+  color: white;
+
+  background: #df7558;
+
+  box-shadow:
+    0 12px 25px rgba(223, 117, 88, 0.22);
+}
+
+.lost-primary-button:hover {
+  transform: translateY(-3px);
+
+  background: #d9684a;
+
+  box-shadow:
+    0 17px 30px rgba(223, 117, 88, 0.3);
+}
+
+.lost-primary-button > span:first-child {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.button-arrow {
+  margin-left: auto;
+  font-size: 19px;
+}
+
+.lost-secondary-button {
+  min-width: 200px;
+
+  color: #277457;
+
+  border: 1.5px solid #a8d1bd;
+
+  background: #f1f8f4;
+}
+
+.lost-secondary-button:hover {
+  transform: translateY(-3px);
+
+  background: #e4f3eb;
+
+  border-color: #76b798;
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.lost-hero-visual {
+  position: relative;
+
+  height: 480px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-glow {
+  position: absolute;
+
+  width: 410px;
+  height: 410px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 222, 172, 0.7),
+      rgba(255, 239, 215, 0.35) 55%,
+      transparent 72%
+    );
+}
+
+.hero-item-card {
+  position: relative;
+
+  width: 325px;
+
+  overflow: hidden;
+
+  background: white;
+
+  border: 8px solid white;
+
+  border-radius: 25px;
+
+  transform: rotate(4deg);
+
+  box-shadow:
+    0 25px 55px rgba(31, 45, 73, 0.14);
+
+  z-index: 2;
+}
+
+.hero-item-image {
+  position: relative;
+
+  height: 270px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e2edf5,
+      #d7e8f1
+    );
+}
+
+.hero-image-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-placeholder span {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 25px;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  color: #7890aa;
+
+  font-family: Georgia, serif;
+
+  font-size: 60px;
+}
+
+.hero-lost-badge {
+  position: absolute;
+
+  top: 18px;
+  right: 18px;
+
+  padding: 9px 13px;
+
+  border-radius: 999px;
+
+  background: #df7558;
+
+  color: white;
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.hero-item-info {
+  padding: 21px 22px 24px;
+}
+
+.hero-item-info > span {
+  color: #df7558;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+.hero-item-info h3 {
+  margin: 9px 0 6px;
+
+  color: #17233f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 22px;
+}
+
+.hero-item-info p {
+  margin: 0;
+
+  color: #76849a;
+
+  font-size: 13px;
+}
+
+
+/* Floating notes */
+
+.hero-note {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 17px;
+
+  background: white;
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 16px 35px rgba(31, 45, 73, 0.12);
+
+  z-index: 4;
+}
+
+.hero-note strong {
+  display: block;
+
+  color: #17233f;
+
+  font-size: 12px;
+}
+
+.hero-note small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #7b879b;
+
+  font-size: 10px;
+}
+
+.note-icon,
+.note-check {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  font-size: 15px;
+}
+
+.note-icon {
+  background: #fff0c9;
+}
+
+.note-check {
+  background: #e1f2e8;
+  color: #299267;
+  font-weight: 900;
+}
+
+.hero-note-top {
+  top: 85px;
+  right: 0;
+}
+
+.hero-note-bottom {
+  left: 5px;
+  bottom: 70px;
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.lost-search-wrapper {
+  position: relative;
+  z-index: 2;
+
+  width: min(1160px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding: 10px 0 75px;
+}
+
+.search-heading {
+  margin-bottom: 20px;
+}
+
+.search-heading > span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #df7558;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.search-heading h2 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 34px;
+
+  letter-spacing: -1px;
+}
+
+.lost-search-box {
+  width: 100%;
+
+  min-height: 72px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 8px;
+
+  background: white;
+
+  border: 1px solid #e5e1da;
+
+  border-radius: 17px;
+
+  box-shadow:
+    0 12px 30px rgba(33, 43, 65, 0.06);
+}
+
+.search-symbol {
+  width: 58px;
+
+  display: flex;
+  justify-content: center;
+
+  color: #8da0b6;
+
+  font-size: 30px;
+
+  transform: rotate(-15deg);
+}
+
+.lost-search-box input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 55px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #17233f;
+
+  font-family: inherit;
+
+  font-size: 15px;
+}
+
+.lost-search-box input::placeholder {
+  color: #9ba7b7;
+}
+
+.search-clear {
+  width: 34px;
+  height: 34px;
+
+  margin-right: 6px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f2f0eb;
+
+  color: #6e7b8d;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.lost-search-button {
+  height: 55px;
+
+  padding: 0 29px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #17233f;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.lost-search-button:hover {
+  background: #263653;
+
+  transform: translateY(-1px);
+}
+
+.lost-search-button:disabled {
+  opacity: 0.65;
+
+  cursor: wait;
+}
+
+.quick-searches {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 13px;
+}
+
+.quick-searches > span {
+  margin-right: 3px;
+
+  color: #8893a3;
+
+  font-size: 12px;
+}
+
+.quick-searches button {
+  padding: 7px 13px;
+
+  border: 1px solid #e3dfd7;
+
+  border-radius: 999px;
+
+  background: #fffdf9;
+
+  color: #5f6d83;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.quick-searches button:hover {
+  color: #df7558;
+
+  border-color: #e5a18d;
+
+  background: #fff3ed;
+}
+
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+
+.lost-results-section {
+  position: relative;
+  z-index: 1;
+
+  width: min(1160px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding-bottom: 75px;
+}
+
+.results-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
+}
+
+.results-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #df7558;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+
+.results-top h2 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 36px;
+
+  letter-spacing: -1px;
+}
+
+.results-top p {
+  margin: 7px 0 0;
+
+  color: #7b8798;
+
+  font-size: 13px;
+}
+
+.results-count {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+
+  color: #7b8798;
+
+  font-size: 13px;
+}
+
+.results-count strong {
+  color: #17233f;
+
+  font-size: 22px;
+}
+
+
+/* =========================================================
+   ITEM GRID
+   ========================================================= */
+
+.lost-items-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.lost-item-card {
+  position: relative;
+
+  overflow: hidden;
+
+  display: block;
+
+  background: white;
+
+  border: 1px solid #e8e3dc;
+
+  border-radius: 19px;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 25px rgba(30, 42, 62, 0.055);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.lost-item-card:hover {
+  transform: translateY(-7px);
+
+  border-color: #ded6cc;
+
+  box-shadow:
+    0 20px 38px rgba(30, 42, 62, 0.12);
+}
+
+
+/* Card image */
+
+.lost-card-image {
+  position: relative;
+
+  height: 215px;
+
+  overflow: hidden;
+
+  background: #edf2f5;
+}
+
+.lost-card-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.4s ease;
+}
+
+.lost-item-card:hover .lost-card-image img {
+  transform: scale(1.05);
+}
+
+
+/* Subtle card backgrounds */
+
+.card-accent-0 .lost-card-image {
+  background: #e6f1f7;
+}
+
+.card-accent-1 .lost-card-image {
+  background: #fff2cf;
+}
+
+.card-accent-2 .lost-card-image {
+  background: #fae7df;
+}
+
+.card-accent-3 .lost-card-image {
+  background: #e5f1e9;
+}
+
+
+/* Placeholder */
+
+.item-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-placeholder span {
+  width: 92px;
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 25px;
+
+  background: rgba(255, 255, 255, 0.65);
+
+  color: #17233f;
+
+  font-family: Georgia, serif;
+
+  font-size: 52px;
+
+  box-shadow:
+    0 10px 25px rgba(31, 45, 73, 0.08);
+}
+
+
+/* Badge */
+
+.lost-card-badge {
+  position: absolute;
+
+  top: 14px;
+  left: 14px;
+
+  padding: 9px 12px;
+
+  border-radius: 999px;
+
+  background: #df7558;
+
+  color: white;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 5px 12px rgba(223, 117, 88, 0.2);
+}
+
+
+/* Arrow */
+
+.card-view {
+  position: absolute;
+
+  right: 14px;
+  top: 14px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: #17233f;
+
+  font-size: 17px;
+
+  opacity: 0;
+
+  transform: translateY(5px);
+
+  transition: 0.2s ease;
+}
+
+.lost-item-card:hover .card-view {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* Content */
+
+.lost-card-content {
+  padding: 18px 18px 20px;
+}
+
+.card-category {
+  margin-bottom: 7px;
+
+  color: #df7558;
+
+  font-size: 9px;
+  font-weight: 900;
+
+  letter-spacing: 1.4px;
+}
+
+.lost-card-content h3 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 21px;
+
+  line-height: 1.2;
+}
+
+.lost-card-description {
+  display: -webkit-box;
+
+  margin: 9px 0 14px;
+
+  overflow: hidden;
+
+  color: #78869a;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.lost-card-location {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #eeeae4;
+
+  color: #66758b;
+
+  font-size: 11px;
+}
+
+.location-icon {
+  color: #df7558;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.lost-loading {
+  min-height: 280px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+
+  margin-bottom: 18px;
+
+  border: 3px solid #f0ddd6;
+
+  border-top-color: #df7558;
+
+  border-radius: 50%;
+
+  animation: lostSpin 0.8s linear infinite;
+}
+
+@keyframes lostSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.lost-loading h3 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, serif;
+
+  font-size: 22px;
+}
+
+.lost-loading p {
+  margin-top: 7px;
+
+  color: #8994a4;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.lost-message {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px 20px;
+
+  margin-bottom: 25px;
+
+  border-radius: 14px;
+}
+
+.lost-error {
+  background: #fff0ec;
+
+  border: 1px solid #f0c6b9;
+
+  color: #9e4f3c;
+}
+
+.lost-error > span {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #df7558;
+
+  color: white;
+
+  font-weight: 900;
+}
+
+.lost-error strong {
+  font-size: 13px;
+}
+
+.lost-error p {
+  margin: 3px 0 0;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.lost-empty {
+  padding: 70px 25px;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px solid #e9e3dc;
+
+  border-radius: 20px;
+}
+
+.empty-illustration {
+  width: 75px;
+  height: 75px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 24px;
+
+  background: #fbe9e2;
+
+  color: #df7558;
+
+  font-size: 34px;
+}
+
+.lost-empty h3 {
+  margin: 0;
+
+  color: #17233f;
+
+  font-family: Georgia, serif;
+
+  font-size: 25px;
+}
+
+.lost-empty p {
+  max-width: 430px;
+
+  margin: 9px auto 22px;
+
+  color: #7c8899;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.empty-button {
+  padding: 12px 19px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #17233f;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   BOTTOM MESSAGE
+   ========================================================= */
+
+.lost-bottom-message {
+  position: relative;
+  z-index: 1;
+
+  width: min(1160px, calc(100% - 64px));
+
+  margin: 0 auto;
+
+  padding: 30px 0 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 17px;
+
+  color: #8290a2;
+
+  text-align: center;
+}
+
+.lost-bottom-message span {
+  color: #df7558;
+
+  font-size: 13px;
+}
+
+.lost-bottom-message p {
+  margin: 0;
+
+  font-family: Georgia, serif;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .lost-items-hero {
+    grid-template-columns: 1fr;
+
+    text-align: center;
+
+    gap: 25px;
+
+    padding-top: 55px;
+  }
+
+  .lost-hero-content {
+    max-width: 700px;
+
+    margin: 0 auto;
+  }
+
+  .lost-hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lost-hero-actions {
+    justify-content: center;
+  }
+
+  .lost-hero-visual {
+    height: 430px;
+  }
+
+  .lost-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .lost-items-hero,
+  .lost-search-wrapper,
+  .lost-results-section,
+  .lost-bottom-message {
+    width: min(100% - 34px, 1160px);
+  }
+
+  .lost-items-hero {
+    padding-top: 40px;
+  }
+
+  .lost-hero-content h1 {
+    font-size: 48px;
+
+    letter-spacing: -2px;
+  }
+
+  .lost-hero-description {
+    font-size: 15px;
+  }
+
+  .lost-hero-actions {
+    flex-direction: column;
+  }
+
+  .lost-primary-button,
+  .lost-secondary-button {
+    width: 100%;
+  }
+
+  .lost-hero-visual {
+    height: 390px;
+  }
+
+  .hero-item-card {
+    width: 275px;
+  }
+
+  .hero-item-image {
+    height: 220px;
+  }
+
+  .hero-note-top {
+    right: -5px;
+  }
+
+  .hero-note-bottom {
+    left: -5px;
+  }
+
+  .lost-search-box {
+    min-height: 65px;
+  }
+
+  .search-symbol {
+    width: 43px;
+  }
+
+  .lost-search-button {
+    padding: 0 18px;
+  }
+
+  .quick-searches {
+    flex-wrap: wrap;
+  }
+
+  .results-top {
+    align-items: flex-start;
+
+    gap: 20px;
+  }
+
+  .results-top h2 {
+    font-size: 30px;
+  }
+
+  .lost-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lost-card-image {
+    height: 240px;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  .lost-hero-content h1 {
+    font-size: 40px;
+  }
+
+  .lost-hero-visual {
+    height: 340px;
+  }
+
+  .hero-item-card {
+    width: 235px;
+  }
+
+  .hero-item-image {
+    height: 180px;
+  }
+
+  .hero-note {
+    padding: 10px 12px;
+  }
+
+  .hero-note small {
+    display: none;
+  }
+
+  .lost-search-box {
+    padding: 6px;
+  }
+
+  .search-symbol {
+    display: none;
+  }
+
+  .lost-search-box input {
+    padding-left: 10px;
+
+    font-size: 13px;
+  }
+
+  .lost-search-button {
+    height: 50px;
+
+    padding: 0 14px;
+  }
+}

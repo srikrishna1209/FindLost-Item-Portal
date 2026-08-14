@@ -12,19 +12,69 @@ public class ClaimRequestController {
 
     private final ClaimRequestService service;
 
-    public ClaimRequestController(ClaimRequestService service) {
+    public ClaimRequestController(
+            ClaimRequestService service
+    ) {
         this.service = service;
     }
 
-    // Create a Claim Request
+
+    // =========================================================
+    // CREATE CLAIM
+    // POST /api/claims
+    // =========================================================
+
     @PostMapping
-    public ClaimRequestDTO createClaim(@RequestBody ClaimRequestDTO dto) {
+    public ClaimRequestDTO createClaim(
+            @RequestBody ClaimRequestDTO dto
+    ) {
+
         return service.createClaim(dto);
     }
 
-    // Get Logged-in User Claims
+
+    // =========================================================
+    // MY CLAIMS
+    // GET /api/claims/my-claims
+    // =========================================================
+
     @GetMapping("/my-claims")
     public List<ClaimRequestDTO> getMyClaims() {
+
         return service.getMyClaims();
+    }
+
+
+    // =========================================================
+    // CLAIMS FOR MY ITEM
+    // GET /api/claims/item/{itemId}
+    // =========================================================
+
+    @GetMapping("/item/{itemId}")
+    public List<ClaimRequestDTO> getClaimsForItem(
+            @PathVariable Long itemId
+    ) {
+
+        return service.getClaimsForItem(
+                itemId
+        );
+    }
+
+
+    // =========================================================
+    // APPROVE / REJECT
+    // PUT /api/claims/{claimId}/status?status=APPROVED
+    // =========================================================
+
+    @PutMapping("/{claimId}/status")
+    public ClaimRequestDTO updateClaimStatus(
+            @PathVariable Long claimId,
+            @RequestParam String status
+    ) {
+
+        return service.updateClaimStatus(
+                claimId,
+                status
+        );
     }
 }
