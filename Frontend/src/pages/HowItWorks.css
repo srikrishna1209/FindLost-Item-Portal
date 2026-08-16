@@ -1,0 +1,1224 @@
+/* =========================================================
+   FINDLOST — HOW IT WORKS
+   Warm editorial visual system
+   ========================================================= */
+
+.how-it-works-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  color: #1b2945;
+
+  background:
+    radial-gradient(
+      circle at 4% 8%,
+      rgba(215, 233, 220, 0.90),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 97% 9%,
+      rgba(248, 226, 181, 0.85),
+      transparent 26%
+    ),
+    linear-gradient(
+      180deg,
+      #fbf8f3 0%,
+      #f8f4ed 55%,
+      #f4efe7 100%
+    );
+}
+
+
+.how-wrapper {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1160px, 92%);
+
+  margin: 0 auto;
+
+  padding: 76px 0 90px;
+}
+
+
+/* =========================================================
+   DECORATIVE SHAPES
+   ========================================================= */
+
+.how-shape {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.how-shape-one {
+  width: 330px;
+  height: 330px;
+
+  left: -200px;
+  top: 470px;
+
+  background: rgba(218, 235, 220, 0.38);
+}
+
+
+.how-shape-two {
+  width: 280px;
+  height: 280px;
+
+  right: -150px;
+  top: 330px;
+
+  background: rgba(249, 228, 185, 0.38);
+}
+
+
+.how-shape-three {
+  width: 140px;
+  height: 140px;
+
+  right: 15%;
+  bottom: 300px;
+
+  background: rgba(230, 218, 240, 0.16);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.how-hero {
+  max-width: 900px;
+
+  margin: 0 auto 82px;
+
+  text-align: center;
+}
+
+
+.how-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  color: #d97959;
+
+  font-size: 11px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.how-eyebrow span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #d97959;
+
+  box-shadow:
+    0 0 0 6px rgba(217, 121, 89, 0.10);
+}
+
+
+.how-hero h1 {
+  margin: 0;
+
+  color: #1b2945;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(55px, 6vw, 82px);
+
+  line-height: 0.98;
+
+  font-weight: 700;
+
+  letter-spacing: -3.5px;
+}
+
+
+.how-hero h1 em {
+  color: #d97959;
+
+  font-style: normal;
+}
+
+
+.how-hero p {
+  max-width: 680px;
+
+  margin: 27px auto 0;
+
+  color: #66748a;
+
+  font-size: 18px;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.how-section-heading {
+  margin-bottom: 35px;
+}
+
+
+.how-section-heading > span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #d97959;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+
+.how-section-heading h2 {
+  margin: 0;
+
+  color: #1b2945;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 43px;
+
+  line-height: 1.05;
+
+  letter-spacing: -1.3px;
+}
+
+
+/* =========================================================
+   FLOW
+   ========================================================= */
+
+.how-flow {
+  margin-bottom: 80px;
+}
+
+
+.how-flow-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+
+/* =========================================================
+   FOUR PROCESS CARDS
+   ========================================================= */
+
+.how-step {
+  min-height: 360px;
+
+  padding: 29px 27px 28px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.78);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 18px 40px rgba(27, 41, 69, 0.07);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  isolation: isolate;
+}
+
+
+.how-step::before {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  right: -60px;
+  bottom: -70px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.22);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+.how-step::after {
+  content: "";
+
+  position: absolute;
+
+  width: 115px;
+  height: 115px;
+
+  left: -35px;
+  top: -40px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+.how-step:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 25px 52px rgba(27, 41, 69, 0.11);
+}
+
+
+/* =========================================================
+   CARD 01 — LOST
+   ========================================================= */
+
+.how-step:nth-child(1) {
+  background:
+    linear-gradient(
+      145deg,
+      #f8ddd4 0%,
+      #f3cfc1 48%,
+      #efc5b5 100%
+    );
+}
+
+
+.how-step:nth-child(1)::before {
+  background: rgba(172, 87, 51, 0.783);
+}
+
+
+.how-step:nth-child(1) .how-step-number {
+  color: #b85d44;
+}
+
+
+.how-step:nth-child(1) .how-step-icon {
+  background: rgba(255, 247, 243, 0.82);
+
+  color: #c85f47;
+}
+
+
+/* =========================================================
+   CARD 02 — FOUND
+   ========================================================= */
+
+.how-step:nth-child(2) {
+  background:
+    linear-gradient(
+      145deg,
+      #dcecdf 0%,
+      #cfe5d5 48%,
+      #c3dccb 100%
+    );
+}
+
+
+.how-step:nth-child(2)::before {
+  background: rgba(22, 211, 60, 0.66);
+}
+
+
+.how-step:nth-child(2) .how-step-number {
+  color: #4e8060;
+}
+
+
+.how-step:nth-child(2) .how-step-icon {
+  background: rgba(247, 253, 249, 0.86);
+
+  color: #4f8a62;
+}
+
+
+/* =========================================================
+   CARD 03 — CLAIM
+   ========================================================= */
+
+.how-step:nth-child(3) {
+  background:
+    linear-gradient(
+      145deg,
+      #f7e9bf 0%,
+      #f3dfab 50%,
+      #eed497 100%
+    );
+}
+
+
+.how-step:nth-child(3)::before {
+  background: rgba(172, 157, 48, 0.779);
+}
+
+
+.how-step:nth-child(3) .how-step-number {
+  color: #9f7826;
+}
+
+
+.how-step:nth-child(3) .how-step-icon {
+  background: rgba(255, 252, 238, 0.88);
+
+  color: #a57a24;
+}
+
+
+/* =========================================================
+   CARD 04 — BRING IT HOME
+   ========================================================= */
+
+.how-step:nth-child(4) {
+  background:
+    linear-gradient(
+      145deg,
+      #e5ddef 0%,
+      #dcd2e9 50%,
+      #d3c6e1 100%
+    );
+}
+
+
+.how-step:nth-child(4)::before {
+  background: rgba(111, 37, 184, 0.733);
+}
+
+
+.how-step:nth-child(4) .how-step-number {
+  color: #67577f;
+}
+
+
+.how-step:nth-child(4) .how-step-icon {
+  background: rgba(251, 248, 255, 0.88);
+
+  color: #74618f;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+   ========================================================= */
+
+.how-step-number {
+  position: absolute;
+
+  right: 18px;
+  top: 18px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 35px;
+
+  line-height: 1;
+
+  font-weight: 700;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   CARD ICON
+   ========================================================= */
+
+.how-step-icon {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 29px;
+
+  border-radius: 17px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 30px;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10px 20px rgba(27, 41, 69, 0.07);
+}
+
+
+.lost-icon {
+  background: rgba(255, 247, 243, 0.82);
+
+  color: #c85f47;
+}
+
+
+.found-icon {
+  background: rgba(247, 253, 249, 0.86);
+
+  color: #4f8a62;
+}
+
+
+.claim-icon {
+  background: rgba(255, 252, 238, 0.88);
+
+  color: #a57a24;
+}
+
+
+.home-icon {
+  background: rgba(251, 248, 255, 0.88);
+
+  color: #74618f;
+}
+
+
+/* =========================================================
+   CARD TITLE
+   ========================================================= */
+
+.how-step h3 {
+  margin: 0 0 14px;
+
+  color: #18263f;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 30px;
+
+  line-height: 1.08;
+
+  font-weight: 700;
+
+  letter-spacing: -0.6px;
+}
+
+/* =========================================================
+   CARD DESCRIPTION
+   ========================================================= */
+
+.how-step p {
+  max-width: 235px;
+
+  color: #030303;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.68;
+
+  font-weight: 500;
+}
+
+
+/* Lost card — warm muted terracotta */
+.how-step:nth-child(1) p {
+  color: #8f5544;
+
+  max-width: 235px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.68;
+
+  font-weight: 500;
+}
+
+
+/* Found card — deep sage */
+.how-step:nth-child(2) p {
+  color: #4d7059;
+
+  max-width: 235px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.68;
+
+  font-weight: 500;
+}
+
+
+/* Claim card — warm olive/gold */
+.how-step:nth-child(3) p {
+  color: #806625;
+
+  max-width: 235px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.68;
+
+  font-weight: 500;
+}
+
+
+/* Bring it home — muted purple */
+.how-step:nth-child(4) p {
+  color: #68587d;
+
+  max-width: 235px;
+
+  margin: 0;
+
+  font-size: 13px;
+
+  line-height: 1.68;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   CARD LINK
+   ========================================================= */
+
+.how-step a {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  color: #24344e;
+
+  font-size: 13px;
+
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.how-step a span {
+  font-size: 19px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+.how-step a:hover {
+  color: #b85c45;
+}
+
+
+.how-step a:hover span {
+  transform: translateX(4px);
+}
+
+
+.how-step:nth-child(1) a {
+  color: #9e4d3b;
+}
+
+
+.how-step:nth-child(2) a {
+  color: #477757;
+}
+
+
+.how-step:nth-child(3) a {
+  color: #8d691f;
+}
+
+
+.how-step:nth-child(4) a {
+  color: #625377;
+}
+
+
+/* =========================================================
+   LOST / FOUND SPLIT
+   ========================================================= */
+
+.how-split {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 22px;
+
+  margin-bottom: 80px;
+}
+
+
+.how-split-card {
+  min-height: 320px;
+
+  padding: 42px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+
+  border: 1px solid #e2dad2;
+
+  box-shadow:
+    0 20px 48px rgba(27, 41, 69, 0.065);
+}
+
+
+.how-split-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  right: -55px;
+  bottom: -75px;
+
+  border-radius: 50%;
+}
+
+
+.lost-card {
+  background:
+    linear-gradient(
+      145deg,
+      #edf2f3 0%,
+      #f5eee7 100%
+    );
+}
+
+
+.lost-card::after {
+  background: rgba(217, 121, 89, 0.12);
+}
+
+
+.found-card {
+  background:
+    linear-gradient(
+      145deg,
+      #edf2eb 0%,
+      #f7efe4 100%
+    );
+}
+
+
+.found-card::after {
+  background: rgba(93, 152, 112, 0.13);
+}
+
+
+.how-split-badge {
+  display: inline-flex;
+
+  padding: 9px 13px;
+
+  margin-bottom: 30px;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.lost-card .how-split-badge {
+  background: #d97959;
+}
+
+
+.found-card .how-split-badge {
+  background: #5d9870;
+}
+
+
+.how-split-card h2 {
+  margin: 0 0 14px;
+
+  color: #1b2945;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 43px;
+
+  line-height: 1;
+
+  letter-spacing: -1.3px;
+}
+
+
+.how-split-card p {
+  max-width: 470px;
+
+  margin: 0;
+
+  color: #5f6e83;
+
+  font-size: 16px;
+
+  line-height: 1.72;
+}
+
+
+.how-split-card a {
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 24px;
+
+  color: #1b2945;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+
+.how-split-card a span {
+  color: #d97959;
+
+  font-size: 19px;
+}
+
+
+.how-split-card a:hover {
+  color: #d97959;
+}
+
+
+/* =========================================================
+   TRUST
+   ========================================================= */
+
+.how-trust {
+  display: grid;
+
+  grid-template-columns: 82px 1fr;
+
+  align-items: start;
+
+  gap: 24px;
+
+  margin-bottom: 80px;
+
+  padding: 42px;
+
+  border: 1px solid #e3dcd4;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(246, 243, 237, 0.95)
+    );
+
+  box-shadow:
+    0 18px 42px rgba(27, 41, 69, 0.055);
+}
+
+
+.how-trust-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #e1f0e5;
+
+  color: #5d9870;
+
+  font-size: 29px;
+
+  font-weight: 800;
+}
+
+
+.how-trust > div:last-child > span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+
+.how-trust h2 {
+  margin: 0 0 15px;
+
+  color: #1b2945;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 39px;
+
+  line-height: 1.05;
+
+  letter-spacing: -1px;
+}
+
+
+.how-trust p {
+  max-width: 670px;
+
+  margin: 0;
+
+  color: #5f6e83;
+
+  font-size: 16px;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.how-final {
+  padding: 72px 30px;
+
+  text-align: center;
+
+  border-radius: 29px;
+
+  border: 1px solid #e4d8cd;
+
+  background:
+    radial-gradient(
+      circle at 15% 25%,
+      rgba(217, 235, 220, 0.65),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 88% 75%,
+      rgba(248, 222, 180, 0.65),
+      transparent 27%
+    ),
+    #f5eee6;
+
+  box-shadow:
+    0 25px 60px rgba(27, 41, 69, 0.07);
+}
+
+
+.how-final-eyebrow {
+  margin-bottom: 15px;
+
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.how-final h2 {
+  margin: 0;
+
+  color: #1b2945;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 53px;
+
+  line-height: 1;
+
+  letter-spacing: -1.8px;
+}
+
+
+.how-final h2 span {
+  color: #d97959;
+}
+
+
+.how-final p {
+  margin: 20px auto 0;
+
+  color: #5f6e83;
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+.how-final-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+
+.how-primary-button,
+.how-secondary-button {
+  min-height: 50px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 17px;
+
+  padding: 0 20px;
+
+  border-radius: 12px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.how-primary-button {
+  background: #d97959;
+
+  color: #ffffff;
+
+  box-shadow:
+    0 12px 26px rgba(217, 121, 89, 0.20);
+}
+
+
+.how-secondary-button {
+  border: 1px solid #d9d1c9;
+
+  background: #ffffff;
+
+  color: #1b2945;
+}
+
+
+.how-primary-button:hover,
+.how-secondary-button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 950px) {
+
+  .how-flow-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .how-step {
+    min-height: 320px;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .how-wrapper {
+    padding-top: 50px;
+  }
+
+
+  .how-hero h1 {
+    font-size: 50px;
+
+    letter-spacing: -2.5px;
+  }
+
+
+  .how-section-heading h2 {
+    font-size: 37px;
+  }
+
+
+  .how-flow-grid,
+  .how-split {
+    grid-template-columns: 1fr;
+  }
+
+
+  .how-step h3 {
+    font-size: 29px;
+  }
+
+
+  .how-step p {
+    font-size: 17px;
+  }
+
+
+  .how-split-card h2 {
+    font-size: 38px;
+  }
+
+
+  .how-trust {
+    grid-template-columns: 1fr;
+
+    padding: 30px;
+  }
+
+
+  .how-trust h2 {
+    font-size: 34px;
+  }
+
+
+  .how-trust p {
+    font-size: 15px;
+  }
+
+
+  .how-final h2 {
+    font-size: 42px;
+  }
+
+
+  .how-final-actions {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  .how-hero h1 {
+    font-size: 42px;
+  }
+
+
+  .how-hero p,
+  .how-split-card p,
+  .how-trust p {
+    font-size: 14px;
+  }
+
+
+  .how-step {
+    min-height: auto;
+
+    padding: 24px;
+  }
+
+
+  .how-step h3 {
+    font-size: 28px;
+  }
+
+
+  .how-step p {
+    font-size: 18px;
+  }
+
+
+  .how-final {
+    padding: 55px 22px;
+  }
+
+
+  .how-final h2 {
+    font-size: 36px;
+  }
+}

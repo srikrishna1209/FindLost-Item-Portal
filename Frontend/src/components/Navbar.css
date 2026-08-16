@@ -387,6 +387,47 @@
   color: #c95e48;
 }
 
+/* =========================================================
+   ADMIN MENU ITEM
+   ========================================================= */
+
+.admin-menu-item {
+  background:
+    linear-gradient(
+      135deg,
+      #f3e8df,
+      #eee5f3
+    );
+
+  color: #1b2945;
+
+  border: 1px solid #e3d7cd;
+}
+
+
+.admin-menu-item:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #eadbcf,
+      #e4daec
+    );
+
+  color: #d97959;
+}
+
+
+.admin-menu-item > span:first-child {
+  font-size: 17px;
+}
+
+
+.admin-menu-text {
+  width: auto !important;
+
+  text-align: left !important;
+}
+
 /* =========================
    RESPONSIVE
 ========================= */

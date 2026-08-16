@@ -57,14 +57,15 @@ public class SecurityConfig {
 
                         // Public endpoints
                         .requestMatchers(
-                                "/api/users/register",
-                                "/api/users/login",
-                                "/uploads/**",
+                            "/api/users/register",
+                            "/api/users/login",
+                            "/api/contact",
+                            "/uploads/**",
 
-                                // Swagger
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html"
+                        // Swagger
+                           "/swagger-ui/**",
+                           "/v3/api-docs/**",
+                           "/swagger-ui.html"
                         ).permitAll()
 
                         // Admin endpoints

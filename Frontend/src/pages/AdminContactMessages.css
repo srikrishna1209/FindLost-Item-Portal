@@ -1,0 +1,1121 @@
+/* =========================================================
+   FINDLOST — ADMIN CONTACT MESSAGES
+   Premium admin inbox
+   ========================================================= */
+
+.admin-contact-page {
+  min-height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+  color: #1b2945;
+
+  background:
+    radial-gradient(
+      circle at 3% 8%,
+      rgba(215, 233, 220, 0.88),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 97% 8%,
+      rgba(248, 226, 181, 0.88),
+      transparent 26%
+    ),
+    linear-gradient(
+      180deg,
+      #fbf8f3 0%,
+      #f8f4ed 55%,
+      #f4efe8 100%
+    );
+}
+
+
+/* =========================================================
+   WRAPPER
+   ========================================================= */
+
+.admin-contact-wrapper {
+  width: min(1160px, 92%);
+
+  margin: 0 auto;
+
+  padding: 70px 0 85px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   BACKGROUND SHAPES
+   ========================================================= */
+
+.admin-contact-shape {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.admin-contact-shape-one {
+  width: 330px;
+  height: 330px;
+
+  left: -180px;
+  top: 420px;
+
+  background: rgba(218, 235, 220, 0.36);
+}
+
+
+.admin-contact-shape-two {
+  width: 290px;
+  height: 290px;
+
+  right: -150px;
+  top: 300px;
+
+  background: rgba(249, 228, 185, 0.34);
+}
+
+
+.admin-contact-shape-three {
+  width: 130px;
+  height: 130px;
+
+  right: 14%;
+  bottom: 190px;
+
+  background: rgba(228, 218, 237, 0.16);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.admin-contact-hero {
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+
+.admin-contact-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  color: #d97959;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.admin-contact-eyebrow span {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #d97959;
+
+  box-shadow:
+    0 0 0 6px rgba(217, 121, 89, 0.10);
+}
+
+
+.admin-contact-hero h1 {
+  width: 100%;
+
+  margin: 0 auto;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: clamp(53px, 6vw, 78px);
+
+  line-height: 0.98;
+
+  letter-spacing: -3.2px;
+
+  text-align: center;
+}
+
+
+.admin-contact-hero h1 em {
+  color: #d97959;
+
+  font-style: normal;
+}
+
+
+.admin-contact-hero p {
+  max-width: 700px;
+
+  margin: 24px auto 0;
+
+  color: #66758b;
+
+  font-size: 16px;
+
+  line-height: 1.75;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.admin-contact-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 60px;
+}
+
+
+.admin-contact-stat {
+  min-height: 125px;
+
+  padding: 22px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.72);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 17px 38px rgba(27, 41, 69, 0.065);
+}
+
+
+.admin-contact-stat::after {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  right: -45px;
+  bottom: -60px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.24);
+}
+
+
+.admin-contact-stat.new {
+  background:
+    linear-gradient(
+      145deg,
+      #f8ddd4,
+      #f0c9bb
+    );
+}
+
+
+.admin-contact-stat.read {
+  background:
+    linear-gradient(
+      145deg,
+      #e0eee2,
+      #cfe3d3
+    );
+}
+
+
+.admin-contact-stat.resolved {
+  background:
+    linear-gradient(
+      145deg,
+      #e5ddef,
+      #d7cae5
+    );
+}
+
+
+.admin-contact-stat span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+
+.admin-contact-stat.new span {
+  color: #a9513e;
+}
+
+
+.admin-contact-stat.read span {
+  color: #4d7758;
+}
+
+
+.admin-contact-stat.resolved span {
+  color: #65547b;
+}
+
+
+.admin-contact-stat strong {
+  display: block;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 37px;
+
+  line-height: 1;
+}
+
+
+.admin-contact-stat small {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #536279;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   LIST HEADER
+   ========================================================= */
+
+.admin-contact-list-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 23px;
+}
+
+
+.admin-contact-list-header > div > span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+
+.admin-contact-list-header h2 {
+  margin: 0;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 39px;
+
+  line-height: 1;
+
+  letter-spacing: -1px;
+}
+
+
+.admin-contact-refresh {
+  min-height: 44px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 0 16px;
+
+  border: 1px solid #ded7cf;
+
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  color: #536178;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.admin-contact-refresh span {
+  color: #d97959;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   MESSAGE LIST
+   ========================================================= */
+
+.admin-contact-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+
+/* =========================================================
+   MESSAGE CARD
+   ========================================================= */
+
+.admin-contact-message-card {
+  padding: 25px 26px;
+
+  border: 1px solid #e3dcd4;
+
+  border-radius: 21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #faf7f2
+    );
+
+  box-shadow:
+    0 17px 42px rgba(27, 41, 69, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.admin-contact-message-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 23px 48px rgba(27, 41, 69, 0.08);
+}
+
+
+.admin-contact-message-card.new {
+  border-left: 5px solid #d97959;
+}
+
+
+.admin-contact-message-card.read {
+  border-left: 5px solid #5d9870;
+}
+
+
+.admin-contact-message-card.resolved {
+  border-left: 5px solid #78668f;
+}
+
+
+/* =========================================================
+   MESSAGE TOP
+   ========================================================= */
+
+.admin-contact-message-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 17px;
+}
+
+
+.admin-contact-message-person {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.admin-contact-avatar {
+  width: 47px;
+  height: 47px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #1b2945,
+      #30415f
+    );
+
+  color: #ffffff;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+
+.admin-contact-message-person h3 {
+  margin: 0 0 4px;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 23px;
+
+  line-height: 1;
+
+  letter-spacing: -0.4px;
+}
+
+
+.admin-contact-message-person a {
+  color: #758197;
+
+  font-size: 13px;
+
+  text-decoration: none;
+}
+
+
+.admin-contact-message-person a:hover {
+  color: #d97959;
+
+  text-decoration: underline;
+}
+
+
+.admin-contact-status {
+  padding: 9px 13px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.admin-contact-status.new {
+  background: #f8e3dc;
+
+  color: #a85240;
+}
+
+
+.admin-contact-status.read {
+  background: #e1f0e5;
+
+  color: #4f855f;
+}
+
+
+.admin-contact-status.resolved {
+  background: #e8e1ef;
+
+  color: #6a587e;
+}
+
+
+/* =========================================================
+   MESSAGE META
+   ========================================================= */
+
+.admin-contact-message-meta {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 13px 15px;
+
+  border-radius: 11px;
+
+  background: #f8f4ee;
+
+  margin-bottom: 14px;
+}
+
+
+.admin-contact-message-meta > span {
+  color: #40516b;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 800;
+}
+
+
+.admin-contact-message-meta time {
+  color: #929baa;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   MESSAGE BODY
+   ========================================================= */
+
+.admin-contact-message-body {
+  max-width: 900px;
+
+  color: #66748a;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+.admin-contact-message-body.expanded {
+  display: block;
+
+  -webkit-line-clamp: unset;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.admin-contact-message-actions {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 18px;
+
+  margin-top: 18px;
+
+  padding-top: 16px;
+
+  border-top: 1px solid #eee7df;
+}
+
+
+.admin-contact-view {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #d97959;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.admin-contact-actions-right {
+  display: flex;
+
+  gap: 10px;
+}
+
+
+.admin-contact-action-button {
+  min-height: 41px;
+
+  padding: 0 15px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.admin-contact-action-button.read {
+  background: #5d9870;
+}
+
+
+.admin-contact-action-button.resolved {
+  background: #78668f;
+}
+
+
+.admin-contact-action-button:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.admin-contact-empty {
+  padding: 72px 30px;
+
+  text-align: center;
+
+  border: 1px solid #e2dad2;
+
+  border-radius: 23px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 45px rgba(27, 41, 69, 0.055);
+}
+
+
+.admin-contact-empty-icon {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto 17px;
+
+  border-radius: 50%;
+
+  background: #e1f0e5;
+
+  color: #5d9870;
+
+  font-size: 29px;
+
+  font-weight: 800;
+}
+
+
+.admin-contact-empty > span {
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+
+.admin-contact-empty h3 {
+  margin: 10px 0 9px;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 32px;
+
+  line-height: 1.1;
+}
+
+
+.admin-contact-empty p {
+  margin: 0;
+
+  color: #748097;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.admin-contact-footer-note {
+  margin-top: 42px;
+
+  padding-top: 26px;
+
+  border-top: 1px solid #e2dbd3;
+
+  text-align: center;
+}
+
+
+.admin-contact-footer-note span {
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.admin-contact-footer-note p {
+  margin: 9px 0 0;
+
+  color: #8490a1;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 14px;
+
+  font-style: italic;
+}
+
+
+/* =========================================================
+   LOADING / ERROR
+   ========================================================= */
+
+.admin-contact-state-page {
+  min-height: 75vh;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px 20px;
+
+  box-sizing: border-box;
+}
+
+
+.admin-contact-state-card {
+  width: min(520px, 92%);
+
+  padding: 55px 35px;
+
+  text-align: center;
+
+  border: 1px solid #e3dcd4;
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 60px rgba(27, 41, 69, 0.075);
+}
+
+
+.admin-contact-state-card > span {
+  color: #d97959;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+}
+
+
+.admin-contact-state-card h2 {
+  margin: 10px 0;
+
+  color: #1b2945;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 31px;
+
+  line-height: 1.08;
+}
+
+
+.admin-contact-state-card p {
+  margin: 0;
+
+  color: #748097;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+.admin-contact-spinner {
+  width: 42px;
+  height: 42px;
+
+  margin: 0 auto 20px;
+
+  border: 3px solid #e6dfd7;
+
+  border-top-color: #d97959;
+
+  border-radius: 50%;
+
+  animation:
+    adminContactSpin 0.8s linear infinite;
+}
+
+
+@keyframes adminContactSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.admin-contact-state-icon {
+  width: 66px;
+  height: 66px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background: #f7e2dc;
+
+  color: #c45d47;
+
+  font-size: 27px;
+
+  font-weight: 800;
+}
+
+
+.admin-contact-retry {
+  min-height: 45px;
+
+  margin-top: 23px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background: #d97959;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .admin-contact-stats {
+    grid-template-columns: 1fr;
+  }
+
+
+  .admin-contact-message-top {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 650px) {
+
+  .admin-contact-wrapper {
+    width: 92%;
+
+    padding-top: 50px;
+  }
+
+
+  .admin-contact-hero {
+    text-align: center;
+  }
+
+
+  .admin-contact-hero h1 {
+    font-size: 47px;
+
+    letter-spacing: -2.4px;
+
+    text-align: center;
+  }
+
+
+  .admin-contact-hero p {
+    font-size: 14px;
+
+    text-align: center;
+  }
+
+
+  .admin-contact-list-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .admin-contact-list-header h2 {
+    font-size: 34px;
+  }
+
+
+  .admin-contact-message-card {
+    padding: 22px 20px;
+  }
+
+
+  .admin-contact-message-meta {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 7px;
+  }
+
+
+  .admin-contact-message-actions {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .admin-contact-action-button {
+    width: 100%;
+  }
+}

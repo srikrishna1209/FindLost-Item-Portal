@@ -1,3 +1,10 @@
+import AdminItems from "./pages/AdminItems";
+import AdminClaims from "./pages/AdminClaims";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
+import AdminContactMessages from "./pages/AdminContactMessages";
+import HowItWorks from "./pages/HowItWorks";
+import Contact from "./pages/Contact";
 import MyItems from "./pages/MyItems";
 import MyClaims from "./pages/MyClaims";
 import LostItems from "./pages/LostItems";
@@ -93,6 +100,40 @@ function App() {
           path="/my-items"
           element={<MyItems />}
         />
+
+        <Route
+          path="/how-it-works"
+          element={<HowItWorks />}
+        />
+
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
+        
+        
+        <Route element={<AdminRoute />}>
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
+
+       <Route
+         path="/admin/contact-messages"
+         element={<AdminContactMessages />}
+       />
+
+       <Route
+         path="/admin/claims"
+         element={<AdminClaims />}
+       />
+
+       <Route
+         path="/admin/items"
+         element={<AdminItems />}
+       />
+
+       </Route>
 
       </Routes>
 
