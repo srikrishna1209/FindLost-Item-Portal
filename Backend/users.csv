@@ -1,0 +1,8 @@
+id,email,name,password,role
+1,krishna@gmail.com,Krishna,123456,USER
+3,krishna3@gmail.com,Krishnaj,123456,USER
+4,babuyk@gmail.com,babu,$2a$10$gcOCrIOny45GkCJSV6lxjO9G59HufBsYlmgsR4db1zEmDhIFGcl2q,USER
+6,krishna2@gmail.com,Krishna2,$2a$10$GhWTeIt1DjyEbLtRl/ecCewUxv4VDtZiwiunLmexUqZCJ/Q4iveBi,USER
+7,admin@gmail.com,Admin,$2a$10$wHHVWPVj9WzGL914gQ0vKeA3BnOQW1V2kSJDvbEmQr5BC943uP8tK,ADMIN
+8,sukkusai7889@gmail.com,Sukku,$2a$10$AfgYRslxKP8LpAKMUBbAQOaV4z1hivBcHgENy/MXhB9Y/KpHgE6M6,USER
+9,ramusai123008@gmail.com,Ramu,$2a$10$ptneaLrh.mKZpbiBYaVvsuAuakJE2YCWvQPbaURsfc8sgvUtLTT4e,USER

@@ -1,0 +1,19 @@
+id,description,item_name,location,status,image_url,user_id
+19,"Black iPhone 14 Pro with a clear case and a small scratch near the camera.","iPhone 14 Pro","College Library",LOST,3ff2723c-392f-4359-9f19-a4f0e79f1035_iphone.jpg,9
+20,"a silver color vintage casio watch","Casio Watch","College Ball Canteen",LOST,4c65f493-2cdd-44af-a934-d904b6894321_watch.jpg,9
+22,"Black leather wallet with a small brown mark"," Black Wallet","College Library",CLAIMED,"2f7658ee-7c15-4a2b-a3f0-e91decce7506_Black Wallet.webp",9
+23,"A Black Car key with a car key chain attached to it.","Car Keys","Parking Area",FOUND,4cdedf84-b7ab-4c15-80fe-695bc32c6ef3_keys.webp,8
+24,"A unique Silver cotated bracelet ","Silver Bracelet","Parking Area",FOUND,5bf46b33-8754-43f1-bcd8-eb9f8e195096_s.webp,7
+25,"A Flower designed Gold Ring","Gold Ring","College Canteen",FOUND,301d749e-34b2-42df-95c3-dbb173a582f5_ring.webp,9
+26,"Black Color Dell Laptop","Dell Laptop","College Library",LOST,205baf21-a728-4954-ae79-5b300e0e69fe_delll.jpg,9
+27,"Zebronics wired Mouse , with RGB lights Mechanism in it",Mouse,"LAB 3 , Billgates Bhavan",LOST,b5e9a319-e4fd-43ee-984e-47c4b405bee4_mouse.jpeg,9
+28,"A black color boat company headset with a blue color box ","Boat Headset","class room",LOST,4cedf895-1067-4a75-972f-a579bb8a04bd_bbb.jpeg,8
+29,"Grey color Casio calculator","Casio Calculator","College Library",LOST,b202d70b-3807-4a8f-a294-4e6c5be9ed8c_caa.jpg,8
+30,"Sandisk 32 gb red color pendrive . It has lot of information ","Pen Drive","Computer Lab ",LOST,b69e30ec-5dcb-47ed-a2d8-c7867145fd5d_penn.webp,8
+31,"Black color sight Spectacles",Spectacles,"College Canteen",FOUND,d34940f7-9501-4a30-8bf6-fb447aba5d4c_sppp.jpg,8
+32,"Blue color Designed Umbrella",Umbrella,"Parking Area",FOUND,fdb3f264-e43e-4b35-948c-e0769f451010_uuuu.avif,8
+33,"Red And Silver Steel Mini Drafter",Drafter,"Drawing Lab",LOST,da35b11c-0934-4b43-91cb-ae233a0c5076_dddd.jpeg,8
+34,"Apple White color Airpods ",Airpods,"Parking Area",FOUND,57abc004-c961-49f0-97e6-472edb3b2685_buu.webp,8
+35,"Gold necklace with diamond stones design",Necklace,"Bus Ground",FOUND,161e6bd6-30f0-4451-8eef-b75662ad622f_nnn.webp,8
+36,"A pink color heart symbol key chain","Key Chain","Parking Area",FOUND,42dd38fa-687d-4ea2-94ac-91ca16459bd6_keee.avif,9
+37,"Apple adapter with sealed box",Adapter,"College Canteen",RETURNED,06aefcbc-5335-4534-90d1-ff896add1d26_chhh.jpg,9
