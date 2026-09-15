@@ -72,4 +72,108 @@ public class UserService {
             user.getRole()
     );
 }
+public UserDTO getProfile(String email) {
+
+    User user = repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found.")
+            );
+
+    UserDTO response = new UserDTO();
+
+    response.setId(user.getId());
+    response.setName(user.getName());
+    response.setEmail(user.getEmail());
+    response.setRole(user.getRole());
+
+    response.setPassword(null);
+
+    return response;
+}
+
+
+public UserDTO updateProfile(
+        String email,
+        String name
+) {
+
+    User user = repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found.")
+            );
+
+    if (name == null || name.trim().isEmpty()) {
+        throw new RuntimeException("Name cannot be empty.");
+    }
+
+    user.setName(name.trim());
+
+    User savedUser = repository.save(user);
+
+    UserDTO response = new UserDTO();
+
+    response.setId(savedUser.getId());
+    response.setName(savedUser.getName());
+    response.setEmail(savedUser.getEmail());
+    response.setRole(savedUser.getRole());
+
+    response.setPassword(null);
+
+    return response;
+}
+public void changePassword(
+        String email,
+        String currentPassword,
+        String newPassword
+) {
+
+    User user = repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("User not found.")
+            );
+
+    if (currentPassword == null ||
+            currentPassword.trim().isEmpty()) {
+        throw new RuntimeException(
+                "Current password is required."
+        );
+    }
+
+    if (newPassword == null ||
+            newPassword.trim().isEmpty()) {
+        throw new RuntimeException(
+                "New password is required."
+        );
+    }
+
+    if (newPassword.length() < 6) {
+        throw new RuntimeException(
+                "New password must contain at least 6 characters."
+        );
+    }
+
+    if (!passwordEncoder.matches(
+            currentPassword,
+            user.getPassword()
+    )) {
+        throw new RuntimeException(
+                "Current password is incorrect."
+        );
+    }
+
+    if (passwordEncoder.matches(
+            newPassword,
+            user.getPassword()
+    )) {
+        throw new RuntimeException(
+                "New password must be different from your current password."
+        );
+    }
+
+    user.setPassword(
+            passwordEncoder.encode(newPassword)
+    );
+
+    repository.save(user);
+}
 }

@@ -1,5 +1,6 @@
 package com.krishna.lostfoundportal.controller;
-
+import java.util.Map;
+import org.springframework.security.core.Authentication;
 import com.krishna.lostfoundportal.dto.UserDTO;
 import com.krishna.lostfoundportal.service.UserService;
 import jakarta.validation.Valid;
@@ -24,5 +25,46 @@ public class UserController {
     @PostMapping("/login")
 public LoginResponse login(@RequestBody LoginRequest request) {
     return service.loginUser(request);
+}
+@GetMapping("/profile")
+public UserDTO getProfile(
+        Authentication authentication
+) {
+
+    return service.getProfile(
+            authentication.getName()
+    );
+}
+
+
+@PutMapping("/profile")
+public UserDTO updateProfile(
+        Authentication authentication,
+        @RequestBody Map<String, String> request
+) {
+
+    String name = request.get("name");
+
+    return service.updateProfile(
+            authentication.getName(),
+            name
+    );
+}
+@PutMapping("/password")
+public Map<String, String> changePassword(
+        Authentication authentication,
+        @RequestBody Map<String, String> request
+) {
+
+    service.changePassword(
+            authentication.getName(),
+            request.get("currentPassword"),
+            request.get("newPassword")
+    );
+
+    return Map.of(
+            "message",
+            "Password changed successfully."
+    );
 }
 }

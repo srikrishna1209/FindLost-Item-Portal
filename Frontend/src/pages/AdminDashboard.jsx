@@ -376,6 +376,33 @@ function AdminDashboard() {
            </strong>
           </Link>
 
+          <Link
+            to="/admin/users"
+            className="admin-dashboard-card users"
+          >
+           <div className="admin-dashboard-card-icon">
+    ♙
+           </div>
+
+          <span>
+            ADMIN · 06
+         </span>
+ 
+         <h3>
+           User management
+         </h3>
+
+         <p>
+         Browse registered members and administrative accounts
+         across the FindLost community.
+       </p>
+
+       <strong>
+        Manage users
+       <b>→</b>
+      </strong>
+      </Link>
+
           </div>
 
         </section>

@@ -1,113 +1,253 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {
+  Link,
+  useSearchParams,
+} from "react-router-dom";
+
 import api from "../services/api";
 import "./LostItems.css";
 
+
 function LostItems() {
+
   const [items, setItems] = useState([]);
+
   const [keyword, setKeyword] = useState("");
+
   const [loading, setLoading] = useState(true);
+
   const [searching, setSearching] = useState(false);
+
   const [error, setError] = useState("");
+
+  const [searchParams, setSearchParams] =
+    useSearchParams();
+
 
   const loadItems = async () => {
     try {
       setLoading(true);
       setError("");
 
-      const response = await api.get("/api/items");
+      const response =
+        await api.get("/api/items");
 
-      const lostItems = response.data.filter(
-        (item) => item.status?.toUpperCase() === "LOST"
-      );
+      const lostItems =
+        response.data.filter(
+          (item) =>
+            item.status?.toUpperCase() ===
+            "LOST"
+        );
 
       setItems(lostItems);
+
     } catch (err) {
-      console.error("Loading lost items failed:", err);
+
+      console.error(
+        "Loading lost items failed:",
+        err
+      );
 
       if (err.response?.status === 401) {
-        setError("Please log in to view lost items.");
+
+        setError(
+          "Please log in to view lost items."
+        );
+
       } else if (err.response?.status === 403) {
-        setError("You don't have permission to view these items.");
+
+        setError(
+          "You don't have permission to view these items."
+        );
+
       } else {
-        setError("Unable to load lost items.");
+
+        setError(
+          "Unable to load lost items."
+        );
       }
+
     } finally {
+
       setLoading(false);
+
     }
   };
 
-  useEffect(() => {
-    loadItems();
-  }, []);
 
-  const searchItems = async (searchText) => {
-    const text = searchText.trim();
+  const searchItems = async (
+    searchText
+  ) => {
+
+    const text =
+      searchText.trim();
+
 
     if (!text) {
-      loadItems();
+
+      setKeyword("");
+
+      setSearchParams({});
+
+      await loadItems();
+
       return;
     }
 
+
     try {
+
       setSearching(true);
+      setLoading(true);
       setError("");
 
-      const response = await api.get("/api/items/search", {
-        params: {
-          keyword: text,
-        },
+      setSearchParams({
+        keyword: text,
       });
 
-      const lostItems = response.data.filter(
-        (item) => item.status?.toUpperCase() === "LOST"
-      );
+
+      const response =
+        await api.get(
+          "/api/items/search",
+          {
+            params: {
+              keyword: text,
+            },
+          }
+        );
+
+
+      const lostItems =
+        response.data.filter(
+          (item) =>
+            item.status?.toUpperCase() ===
+            "LOST"
+        );
+
 
       setItems(lostItems);
+
     } catch (err) {
-      console.error("Search failed:", err);
-      setError("Unable to search items right now.");
+
+      console.error(
+        "Search failed:",
+        err
+      );
+
+      setError(
+        "Unable to search items right now."
+      );
+
     } finally {
+
       setSearching(false);
+      setLoading(false);
+
     }
   };
 
+
+  useEffect(() => {
+
+    const initialKeyword =
+      searchParams
+        .get("keyword")
+        ?.trim() || "";
+
+
+    setKeyword(initialKeyword);
+
+
+    if (initialKeyword) {
+
+      searchItems(initialKeyword);
+
+    } else {
+
+      loadItems();
+
+    }
+
+    // Run only when the page is first opened.
+    // Search form changes are handled directly.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   const handleSearch = async (e) => {
+
     e.preventDefault();
+
     await searchItems(keyword);
+
   };
 
-  const handleQuickSearch = (value) => {
+
+  const handleQuickSearch = async (
+    value
+  ) => {
+
     setKeyword(value);
-    searchItems(value);
+
+    await searchItems(value);
+
   };
 
-  const clearSearch = () => {
+
+  const clearSearch = async () => {
+
     setKeyword("");
-    loadItems();
+
+    setSearchParams({});
+
+    await loadItems();
+
   };
 
- const getImageUrl = (imageUrl) => {
-  if (!imageUrl) return null;
 
-  if (imageUrl.startsWith("http")) {
-    return imageUrl;
-  }
+  const getImageUrl = (
+    imageUrl
+  ) => {
 
-  if (imageUrl.startsWith("/uploads/")) {
-    return `http://localhost:8080${imageUrl}`;
-  }
+    if (!imageUrl) {
+      return null;
+    }
 
-  return `http://localhost:8080/uploads/${imageUrl}`;
-};
+    if (
+      imageUrl.startsWith("http")
+    ) {
+      return imageUrl;
+    }
+
+    if (
+      imageUrl.startsWith(
+        "/uploads/"
+      )
+    ) {
+      return `http://localhost:8080${imageUrl}`;
+    }
+
+    return `http://localhost:8080/uploads/${imageUrl}`;
+  };
+
 
   return (
     <div className="lost-items-page">
 
       {/* Decorative background */}
-      <div className="lost-bg-shape lost-bg-shape-one"></div>
-      <div className="lost-bg-shape lost-bg-shape-two"></div>
-      <div className="lost-bg-shape lost-bg-shape-three"></div>
+
+      <div
+        className="lost-bg-shape lost-bg-shape-one"
+      />
+
+      <div
+        className="lost-bg-shape lost-bg-shape-two"
+      />
+
+      <div
+        className="lost-bg-shape lost-bg-shape-three"
+      />
+
 
       {/* ================= HERO ================= */}
 
@@ -123,12 +263,15 @@ function LostItems() {
           <h1>
             Help something
             <br />
-            <span>find its way home.</span>
+            <span>
+              find its way home.
+            </span>
           </h1>
 
           <p className="lost-hero-description">
-            Browse recently reported lost items. Maybe the thing
-            you're looking for is already here.
+            Browse recently reported lost items.
+            Maybe the thing you're looking for
+            is already here.
           </p>
 
           <div className="lost-hero-actions">
@@ -139,7 +282,9 @@ function LostItems() {
             >
               <span>+</span>
               Report lost item
-              <span className="button-arrow">→</span>
+              <span className="button-arrow">
+                →
+              </span>
             </Link>
 
             <Link
@@ -154,23 +299,36 @@ function LostItems() {
 
         </div>
 
+
         {/* Hero visual */}
+
         <div className="lost-hero-visual">
 
           <div className="hero-glow"></div>
 
           <div className="hero-note hero-note-top">
-            <span className="note-icon">📍</span>
+
+            <span className="note-icon">
+              📍
+            </span>
 
             <div>
-              <strong>Lost nearby</strong>
-              <small>Someone may have seen it</small>
+              <strong>
+                Lost nearby
+              </strong>
+
+              <small>
+                Someone may have seen it
+              </small>
             </div>
+
           </div>
+
 
           <div className="hero-item-card">
 
             <div className="hero-item-image">
+
               <div className="hero-image-placeholder">
                 <span>?</span>
               </div>
@@ -178,23 +336,45 @@ function LostItems() {
               <span className="hero-lost-badge">
                 LOST
               </span>
+
             </div>
 
+
             <div className="hero-item-info">
-              <span>RECENT REPORT</span>
-              <h3>Something you're looking for?</h3>
-              <p>It might be closer than you think.</p>
+
+              <span>
+                RECENT REPORT
+              </span>
+
+              <h3>
+                Something you're looking for?
+              </h3>
+
+              <p>
+                It might be closer than you think.
+              </p>
+
             </div>
 
           </div>
 
+
           <div className="hero-note hero-note-bottom">
-            <span className="note-check">✓</span>
+
+            <span className="note-check">
+              ✓
+            </span>
 
             <div>
-              <strong>Keep looking</strong>
-              <small>New reports appear regularly</small>
+              <strong>
+                Keep looking
+              </strong>
+
+              <small>
+                New reports appear regularly
+              </small>
             </div>
+
           </div>
 
         </div>
@@ -208,13 +388,16 @@ function LostItems() {
 
         <div className="search-heading">
 
-          <span>SEARCH REPORTED ITEMS</span>
+          <span>
+            SEARCH REPORTED ITEMS
+          </span>
 
           <h2>
             Looking for something?
           </h2>
 
         </div>
+
 
         <form
           className="lost-search-box"
@@ -228,11 +411,15 @@ function LostItems() {
           <input
             type="text"
             value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
+            onChange={(e) =>
+              setKeyword(e.target.value)
+            }
             placeholder="Search by item, description or location..."
           />
 
+
           {keyword && (
+
             <button
               type="button"
               className="search-clear"
@@ -241,14 +428,18 @@ function LostItems() {
             >
               ×
             </button>
+
           )}
+
 
           <button
             type="submit"
             className="lost-search-button"
             disabled={searching}
           >
-            {searching ? "Searching..." : "Search"}
+            {searching
+              ? "Searching..."
+              : "Search"}
           </button>
 
         </form>
@@ -256,32 +447,46 @@ function LostItems() {
 
         <div className="quick-searches">
 
-          <span>Try searching:</span>
+          <span>
+            Try searching:
+          </span>
+
 
           <button
             type="button"
-            onClick={() => handleQuickSearch("phone")}
+            onClick={() =>
+              handleQuickSearch("phone")
+            }
           >
             Phone
           </button>
 
+
           <button
             type="button"
-            onClick={() => handleQuickSearch("wallet")}
+            onClick={() =>
+              handleQuickSearch("wallet")
+            }
           >
             Wallet
           </button>
 
+
           <button
             type="button"
-            onClick={() => handleQuickSearch("library")}
+            onClick={() =>
+              handleQuickSearch("library")
+            }
           >
             Library
           </button>
 
+
           <button
             type="button"
-            onClick={() => handleQuickSearch("college")}
+            onClick={() =>
+              handleQuickSearch("college")
+            }
           >
             College
           </button>
@@ -298,6 +503,7 @@ function LostItems() {
         <div className="results-top">
 
           <div>
+
             <span className="results-eyebrow">
               RECENTLY REPORTED
             </span>
@@ -309,15 +515,26 @@ function LostItems() {
             <p>
               Items reported by people in the community.
             </p>
+
           </div>
 
+
           {!loading && !error && (
+
             <div className="results-count">
-              <strong>{items.length}</strong>
+
+              <strong>
+                {items.length}
+              </strong>
+
               <span>
-                {items.length === 1 ? "item" : "items"}
+                {items.length === 1
+                  ? "item"
+                  : "items"}
               </span>
+
             </div>
+
           )}
 
         </div>
@@ -326,36 +543,55 @@ function LostItems() {
         {/* Error */}
 
         {error && (
+
           <div className="lost-message lost-error">
+
             <span>!</span>
+
             <div>
-              <strong>Something went wrong</strong>
-              <p>{error}</p>
+
+              <strong>
+                Something went wrong
+              </strong>
+
+              <p>
+                {error}
+              </p>
+
             </div>
+
           </div>
+
         )}
 
 
         {/* Loading */}
 
         {loading && (
+
           <div className="lost-loading">
 
             <div className="loading-spinner"></div>
 
-            <h3>Finding lost items...</h3>
+            <h3>
+              Finding lost items...
+            </h3>
 
             <p>
-              Give us a moment while we bring the latest reports.
+              Give us a moment while we bring
+              the latest reports.
             </p>
 
           </div>
+
         )}
 
 
         {/* Empty */}
 
-        {!loading && !error && items.length === 0 && (
+        {!loading &&
+          !error &&
+          items.length === 0 && (
 
           <div className="lost-empty">
 
@@ -364,21 +600,26 @@ function LostItems() {
             </div>
 
             <h3>
-              No lost items found
+              {keyword
+                ? `No lost items found for "${keyword}"`
+                : "No lost items found"}
             </h3>
 
             <p>
-              We couldn't find any lost items matching your search.
-              Try another word or browse all reports.
+              We couldn't find any lost items
+              matching your search. Try another
+              word or browse all reports.
             </p>
 
             {keyword && (
+
               <button
                 className="empty-button"
                 onClick={clearSearch}
               >
                 View all lost items
               </button>
+
             )}
 
           </div>
@@ -388,81 +629,125 @@ function LostItems() {
 
         {/* Item cards */}
 
-        {!loading && !error && items.length > 0 && (
+        {!loading &&
+          !error &&
+          items.length > 0 && (
 
           <div className="lost-items-grid">
 
-            {items.map((item, index) => (
+            {items.map(
+              (item, index) => (
 
-              <Link
-                to={`/items/${item.id}`}
+              <article
                 className={`lost-item-card card-accent-${index % 4}`}
                 key={item.id}
               >
 
-                <div className="lost-card-image">
+                <Link
+                  to={`/items/${item.id}`}
+                  className="lost-item-card-main-link"
+                >
 
-                  {getImageUrl(item.imageUrl) ? (
+                  <div className="lost-card-image">
 
-                    <img
-                      src={getImageUrl(item.imageUrl)}
-                      alt={item.itemName}
-                    />
+                    {getImageUrl(
+                      item.imageUrl
+                    ) ? (
 
-                  ) : (
+                      <img
+                        src={getImageUrl(
+                          item.imageUrl
+                        )}
+                        alt={item.itemName}
+                      />
 
-                    <div className="item-placeholder">
-                      <span>
-                        {item.itemName
-                          ?.charAt(0)
-                          ?.toUpperCase() || "?"}
-                      </span>
+                    ) : (
+
+                      <div className="item-placeholder">
+
+                        <span>
+                          {item.itemName
+                            ?.charAt(0)
+                            ?.toUpperCase() ||
+                            "?"}
+                        </span>
+
+                      </div>
+
+                    )}
+
+
+                    <span className="lost-card-badge">
+                      LOST
+                    </span>
+
+
+                    <span className="card-view">
+                      ↗
+                    </span>
+
+                  </div>
+
+
+                  <div className="lost-card-content">
+
+                    <div className="card-category">
+                      LOST ITEM
                     </div>
 
-                  )}
-
-                  <span className="lost-card-badge">
-                    LOST
-                  </span>
-
-                  <span className="card-view">
-                    ↗
-                  </span>
-
-                </div>
+                    <h3>
+                      {item.itemName}
+                    </h3>
 
 
-                <div className="lost-card-content">
+                    {item.description && (
 
-                  <div className="card-category">
-                    LOST ITEM
+                      <p className="lost-card-description">
+                        {item.description}
+                      </p>
+
+                    )}
+
+
+                    <div className="lost-card-location">
+
+                      <span className="location-icon">
+                        ◉
+                      </span>
+
+                      <span>
+                        {item.location ||
+                          "Location not specified"}
+                      </span>
+
+                    </div>
+
                   </div>
 
-                  <h3>
-                    {item.itemName}
-                  </h3>
+                </Link>
 
-                  {item.description && (
-                    <p className="lost-card-description">
-                      {item.description}
-                    </p>
-                  )}
 
-                  <div className="lost-card-location">
+                <div className="lost-card-action-area">
 
-                    <span className="location-icon">
-                      ◉
-                    </span>
+                  <Link
+                    to={`/items/${item.id}`}
+                    className="lost-found-response-button"
+                  >
+                    <span>✦</span>
 
                     <span>
-                      {item.location || "Location not specified"}
+                      I Found This Item
                     </span>
 
-                  </div>
+                    <span className="lost-response-arrow">
+                      →
+                    </span>
+
+                  </Link>
 
                 </div>
 
-              </Link>
+              </article>
 
             ))}
 
@@ -475,7 +760,9 @@ function LostItems() {
 
       {/* ================= BOTTOM MESSAGE ================= */}
 
-      {!loading && !error && items.length > 0 && (
+      {!loading &&
+        !error &&
+        items.length > 0 && (
 
         <div className="lost-bottom-message">
 

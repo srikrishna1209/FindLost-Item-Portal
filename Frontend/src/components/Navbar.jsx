@@ -266,6 +266,22 @@ function Navbar() {
 
 
                   {/* ======================================
+                      MY CLAIMS
+                      ====================================== */}
+
+                  <Link
+                    to="/my-claims"
+                    className="profile-menu-item"
+                    onClick={() =>
+                      setMenuOpen(false)
+                    }
+                  >
+                    <span>✓</span>
+                    My Claims
+                  </Link>
+
+
+                  {/* ======================================
                       SETTINGS
                       ====================================== */}
 

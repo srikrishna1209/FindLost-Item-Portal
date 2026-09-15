@@ -1220,3 +1220,131 @@
     margin-top: 50px;
   }
 }
+
+/* =========================================================
+   FINDLOST — LOST ITEM RESPONSE / SHARED REQUEST FORM
+   ========================================================= */
+
+.item-details-request-form {
+  margin-top: 20px;
+  padding: 22px;
+  border: 1px solid #e5ddd4;
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      145deg,
+      #fffaf5 0%,
+      #f3f8f3 100%
+    );
+  box-shadow:
+    0 18px 40px rgba(30, 44, 67, 0.08);
+}
+
+.item-details-request-eyebrow {
+  margin-bottom: 5px;
+  color: #d97859;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 1.6px;
+}
+
+.item-details-request-heading {
+  margin: 0;
+  color: #18233f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  line-height: 1.1;
+}
+
+.item-details-request-description {
+  margin: 0 0 17px;
+  color: #778397;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.item-details-request-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dfe4ea;
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  background: #ffffff;
+  color: #18233f;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.6;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.item-details-request-textarea:focus {
+  border-color: #d97859;
+  box-shadow: 0 0 0 4px rgba(217, 120, 89, 0.08);
+}
+
+.item-details-request-textarea::placeholder {
+  color: #9aa4b3;
+}
+
+.item-details-request-success-heading {
+  margin: 0 0 8px;
+  color: #18233f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  line-height: 1.1;
+}
+
+.item-details-request-success-text {
+  max-width: 390px;
+  margin: 0 auto 17px;
+  color: #778397;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.item-details-found-response-action {
+  background: #5d9870;
+  box-shadow: 0 13px 28px rgba(93, 152, 112, 0.20);
+}
+
+.item-details-found-response-action:hover {
+  background: #518b65;
+  box-shadow: 0 17px 32px rgba(93, 152, 112, 0.26);
+}
+
+.item-details-found-response-action:disabled {
+  background: #9abb9f;
+}
+
+.item-details-found-response-note {
+  background: #eef5f0;
+}
+
+.item-details-found-response-note > span {
+  color: #5d9870;
+}
+
+@media (max-width: 600px) {
+  .item-details-request-form {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .item-details-request-heading {
+    font-size: 23px;
+  }
+
+  .item-details-request-description {
+    font-size: 11px;
+  }
+
+  .item-details-request-textarea {
+    font-size: 12px;
+  }
+}
+

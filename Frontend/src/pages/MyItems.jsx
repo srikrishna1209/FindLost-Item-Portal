@@ -10,97 +10,69 @@ function MyItems() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const [reviewingClaim, setReviewingClaim] =
-    useState(null);
-
-  const [reviewLoading, setReviewLoading] =
-    useState(false);
-
-  const [reviewError, setReviewError] =
-    useState("");
-
+  const [reviewingClaim, setReviewingClaim] = useState(null);
+  const [reviewLoading, setReviewLoading] = useState(false);
+  const [reviewError, setReviewError] = useState("");
 
   useEffect(() => {
     loadMyItems();
   }, []);
 
-
   const loadMyItems = async () => {
-
     try {
-
       setLoading(true);
       setError("");
 
-      const response =
-        await api.get("/api/items/my-items");
+      const response = await api.get("/api/items/my-items");
 
-      const myItems =
-        Array.isArray(response.data)
-          ? response.data
-          : [];
+      const myItems = Array.isArray(response.data)
+        ? response.data
+        : [];
 
       setItems(myItems);
 
+      /*
+       * IMPORTANT:
+       * Load claim/response requests for BOTH:
+       * - FOUND items  → ownership claims
+       * - LOST items   → found-item responses
+       */
+      const claimResults = await Promise.all(
+        myItems.map(async (item) => {
+          try {
+            const result = await api.get(
+              `/api/claims/item/${item.id}`
+            );
 
-      const foundItems =
-        myItems.filter(
-          (item) =>
-            item.status?.toUpperCase() === "FOUND"
-        );
+            return {
+              itemId: item.id,
+              claims: Array.isArray(result.data)
+                ? result.data
+                : [],
+            };
+          } catch (claimError) {
+            console.error(
+              `Loading claims for item ${item.id} failed:`,
+              claimError
+            );
 
-
-      const claimResults =
-        await Promise.all(
-          foundItems.map(async (item) => {
-
-            try {
-
-              const result =
-                await api.get(
-                  `/api/claims/item/${item.id}`
-                );
-
-              return {
-                itemId: item.id,
-                claims:
-                  Array.isArray(result.data)
-                    ? result.data
-                    : [],
-              };
-
-            } catch (claimError) {
-
-              console.error(
-                `Loading claims for item ${item.id} failed:`,
-                claimError
-              );
-
-              return {
-                itemId: item.id,
-                claims: [],
-              };
-            }
-          })
-        );
-
+            return {
+              itemId: item.id,
+              claims: [],
+            };
+          }
+        })
+      );
 
       const claimMap = {};
 
-      claimResults.forEach(
-        ({ itemId, claims }) => {
-          claimMap[itemId] = claims;
-        }
-      );
+      claimResults.forEach(({ itemId, claims }) => {
+        claimMap[itemId] = claims;
+      });
 
       setClaimsByItem(claimMap);
-
     } catch (err) {
-
-      console.error(
-        "Loading my items failed:",
-        err
-      );
+      console.error("Loading my items failed:", err);
 
       if (err.response?.status === 401) {
         setError(
@@ -115,20 +87,13 @@ function MyItems() {
           "Unable to load your reported items."
         );
       }
-
     } finally {
       setLoading(false);
     }
   };
 
-
-  const handleReview = async (
-    claimId,
-    status
-  ) => {
-
+  const handleReview = async (claimId, status) => {
     try {
-
       setReviewLoading(true);
       setReviewError("");
 
@@ -142,13 +107,10 @@ function MyItems() {
         }
       );
 
-
       setReviewingClaim(null);
 
       await loadMyItems();
-
     } catch (err) {
-
       console.error(
         "Updating claim failed:",
         err
@@ -160,22 +122,19 @@ function MyItems() {
         );
       } else if (err.response?.status === 403) {
         setReviewError(
-          "You are not allowed to review this claim."
+          "You are not allowed to review this request."
         );
       } else {
         setReviewError(
-          "Unable to update the claim right now."
+          "Unable to update the request right now."
         );
       }
-
     } finally {
       setReviewLoading(false);
     }
   };
 
-
   const getImageUrl = (imageUrl) => {
-
     if (!imageUrl) {
       return null;
     }
@@ -194,13 +153,20 @@ function MyItems() {
     return `http://localhost:8080/uploads/${imageUrl}`;
   };
 
+  const reviewingItem = reviewingClaim
+    ? items.find(
+        (item) =>
+          item.id === reviewingClaim.itemId
+      )
+    : null;
+
+  const reviewingItemIsLost =
+    reviewingItem?.status?.toUpperCase() === "LOST";
 
   if (loading) {
     return (
       <div className="my-items-page my-items-state">
-
         <div className="my-items-state-card">
-
           <div className="my-items-spinner"></div>
 
           <h2>
@@ -211,20 +177,15 @@ function MyItems() {
             We're bringing together the items
             you've reported.
           </p>
-
         </div>
-
       </div>
     );
   }
 
-
   if (error) {
     return (
       <div className="my-items-page my-items-state">
-
         <div className="my-items-state-card error">
-
           <div className="my-items-state-icon">
             !
           </div>
@@ -233,9 +194,7 @@ function MyItems() {
             Something went wrong
           </h2>
 
-          <p>
-            {error}
-          </p>
+          <p>{error}</p>
 
           <button
             type="button"
@@ -244,29 +203,20 @@ function MyItems() {
           >
             Try again
           </button>
-
         </div>
-
       </div>
     );
   }
 
-
   return (
     <div className="my-items-page">
-
       <div className="my-items-bg my-items-bg-one"></div>
       <div className="my-items-bg my-items-bg-two"></div>
 
-
       <div className="my-items-wrapper">
 
-        {/* ===================================================
-            HEADER
-            =================================================== */}
-
+        {/* HEADER */}
         <section className="my-items-header">
-
           <div className="my-items-eyebrow">
             <span></span>
             MY REPORTED ITEMS
@@ -275,45 +225,32 @@ function MyItems() {
           <h1>
             The items
             <br />
-            <span>you've helped bring forward.</span>
+            <span>
+              you've helped bring forward.
+            </span>
           </h1>
 
           <p>
-            Manage the items you've reported and review
-            claims from people who believe a found item
-            belongs to them.
+            Manage the items you've reported and
+            review claims or found-item responses
+            from people in the community.
           </p>
-
         </section>
 
-
-        {/* ===================================================
-            COUNT
-            =================================================== */}
-
+        {/* COUNT */}
         <div className="my-items-count">
-
-          <strong>
-            {items.length}
-          </strong>
+          <strong>{items.length}</strong>
 
           <span>
             {items.length === 1
               ? "reported item"
               : "reported items"}
           </span>
-
         </div>
 
-
-        {/* ===================================================
-            EMPTY
-            =================================================== */}
-
+        {/* EMPTY */}
         {items.length === 0 ? (
-
           <div className="my-items-empty">
-
             <div className="my-items-empty-icon">
               ♢
             </div>
@@ -332,20 +269,16 @@ function MyItems() {
             </p>
 
             <Link
-              to="/report-found"
+              to="/report-lost"
               className="my-items-empty-button"
             >
-              Report a found item →
+              Report an item →
             </Link>
-
           </div>
-
         ) : (
-
           <div className="my-items-grid">
 
             {items.map((item) => {
-
               const isFound =
                 item.status?.toUpperCase() === "FOUND";
 
@@ -359,9 +292,15 @@ function MyItems() {
                     "PENDING"
                 );
 
+              const approvedClaims =
+                itemClaims.filter(
+                  (claim) =>
+                    claim.status?.toUpperCase() ===
+                    "APPROVED"
+                );
+
               const imageUrl =
                 getImageUrl(item.imageUrl);
-
 
               return (
                 <article
@@ -370,30 +309,21 @@ function MyItems() {
                 >
 
                   {/* IMAGE */}
-
                   <div className="my-item-image">
-
                     {imageUrl ? (
-
                       <img
                         src={imageUrl}
                         alt={item.itemName}
                       />
-
                     ) : (
-
                       <div className="my-item-no-image">
-
                         <span>
                           {item.itemName
                             ?.charAt(0)
                             ?.toUpperCase() || "I"}
                         </span>
-
                       </div>
-
                     )}
-
 
                     <span
                       className={
@@ -402,16 +332,11 @@ function MyItems() {
                           : "my-item-status lost"
                       }
                     >
-                      {isFound
-                        ? "FOUND"
-                        : "LOST"}
+                      {isFound ? "FOUND" : "LOST"}
                     </span>
-
                   </div>
 
-
                   {/* CONTENT */}
-
                   <div className="my-item-content">
 
                     <span className="my-item-label">
@@ -426,105 +351,157 @@ function MyItems() {
                       {item.description}
                     </p>
 
-
                     <div className="my-item-location">
                       ⌖ {item.location}
                     </div>
 
+                    {/* CLAIM / RESPONSE AREA */}
+                    <div className="my-item-claim-area">
 
-                    {/* CLAIM INFORMATION */}
+                      <div className="my-item-claim-summary">
+                        <div>
+                          <span>
+                            {isFound
+                              ? "CLAIM REQUESTS"
+                              : "FOUND RESPONSES"}
+                          </span>
 
-                    {isFound && (
-
-                      <div className="my-item-claim-area">
-
-                        <div className="my-item-claim-summary">
-
-                          <div>
-
-                            <span>
-                              CLAIM REQUESTS
-                            </span>
-
-                            <strong>
-                              {itemClaims.length}
-                            </strong>
-
-                          </div>
-
-
-                          {pendingClaims.length >
-                            0 && (
-
-                            <div className="my-item-pending">
-
-                              {pendingClaims.length}
-
-                              {" pending"}
-
-                            </div>
-
-                          )}
-
+                          <strong>
+                            {itemClaims.length}
+                          </strong>
                         </div>
 
+                        {pendingClaims.length > 0 && (
+                          <div className="my-item-pending">
+                            {pendingClaims.length}
+                            {" pending"}
+                          </div>
+                        )}
+                      </div>
 
-                        {pendingClaims.length >
-                          0 ? (
+                      {/* PENDING REQUESTS */}
+                      {pendingClaims.length > 0 ? (
+                        <div className="my-item-claim-list">
+                          {pendingClaims.map((claim) => (
+                            <div
+                              key={claim.id}
+                              className="my-item-claim"
+                            >
+                              <div>
+                                <span>
+                                  {isFound
+                                    ? `CLAIM #${claim.id}`
+                                    : `RESPONSE #${claim.id}`}
+                                </span>
 
-                          <div className="my-item-claim-list">
+                                <p>
+                                  {claim.message ||
+                                    "No message was provided."}
+                                </p>
+                              </div>
 
-                            {pendingClaims.map(
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  setReviewingClaim(
+                                    claim
+                                  )
+                                }
+                                className="my-item-review-button"
+                              >
+                                {isFound
+                                  ? "Review claim"
+                                  : "Review response"}
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="my-item-no-pending">
+                          {isFound
+                            ? "No pending claims."
+                            : "No pending found responses."}
+                        </div>
+                      )}
+
+                      {/* APPROVED HANDOVER CONTACT */}
+                      {approvedClaims.length > 0 && (
+                        <div className="my-item-approved-area">
+
+                          <div className="my-item-approved-heading">
+                            <div className="my-item-approved-icon">
+                              ✓
+                            </div>
+
+                            <div>
+                              <span>
+                                {isFound
+                                  ? "CLAIM APPROVED"
+                                  : "FOUND RESPONSE APPROVED"}
+                              </span>
+
+                              <strong>
+                                Handover contact
+                              </strong>
+                            </div>
+                          </div>
+
+                          <div className="my-item-approved-list">
+                            {approvedClaims.map(
                               (claim) => (
-
                                 <div
                                   key={claim.id}
-                                  className="my-item-claim"
+                                  className="my-item-approved-contact"
                                 >
-
-                                  <div>
-
+                                  <div className="my-item-approved-details">
                                     <span>
-                                      CLAIM #{claim.id}
+                                      {isFound
+                                        ? `CLAIM #${claim.id}`
+                                        : `RESPONSE #${claim.id}`}
                                     </span>
 
-                                    <p>
-                                      {claim.message}
-                                    </p>
+                                    <strong>
+                                      {claim.otherUserName ||
+                                        (isFound
+                                          ? "Claimant"
+                                          : "Finder")}
+                                    </strong>
 
+                                    {claim.otherUserEmail && (
+                                      <a
+                                        href={`mailto:${claim.otherUserEmail}`}
+                                      >
+                                        {claim.otherUserEmail}
+                                      </a>
+                                    )}
                                   </div>
 
-
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      setReviewingClaim(
-                                        claim
-                                      )
-                                    }
-                                    className="my-item-review-button"
-                                  >
-                                    Review
-                                  </button>
-
+                                  {claim.otherUserEmail ? (
+                                    <a
+                                      href={`mailto:${claim.otherUserEmail}?subject=FindLost%20${isFound ? "claim" : "found%20response"}%20%23${claim.id}`}
+                                      className="my-item-approved-contact-button"
+                                    >
+                                      Contact User
+                                    </a>
+                                  ) : (
+                                    <span className="my-item-approved-unavailable">
+                                      Contact unavailable
+                                    </span>
+                                  )}
                                 </div>
                               )
                             )}
-
                           </div>
 
-                        ) : (
+                          <p className="my-item-approved-note">
+                            Arrange a safe meeting place
+                            and verify the item details
+                            before completing the handover.
+                          </p>
+                        </div>
+                      )}
 
-                          <div className="my-item-no-pending">
-                            No pending claims.
-                          </div>
-
-                        )}
-
-                      </div>
-
-                    )}
-
+                    </div>
 
                     <Link
                       to={`/items/${item.id}`}
@@ -534,31 +511,24 @@ function MyItems() {
                     </Link>
 
                   </div>
-
                 </article>
               );
             })}
 
           </div>
-
         )}
 
-
-        {/* ===================================================
-            REVIEW MODAL
-            =================================================== */}
-
+        {/* REVIEW MODAL */}
         {reviewingClaim && (
-
           <div
             className="claim-review-overlay"
             onClick={() => {
               if (!reviewLoading) {
                 setReviewingClaim(null);
+                setReviewError("");
               }
             }}
           >
-
             <div
               className="claim-review-modal"
               onClick={(event) =>
@@ -567,70 +537,62 @@ function MyItems() {
             >
 
               <div className="claim-review-top">
-
                 <div>
-
                   <span>
-                    CLAIM REQUEST
+                    {reviewingItemIsLost
+                      ? "FOUND ITEM RESPONSE"
+                      : "CLAIM REQUEST"}
                   </span>
 
                   <h2>
-                    Review this claim
+                    {reviewingItemIsLost
+                      ? "Review this response"
+                      : "Review this claim"}
                   </h2>
-
                 </div>
 
                 <button
                   type="button"
                   className="claim-review-close"
-                  onClick={() =>
-                    !reviewLoading &&
-                    setReviewingClaim(null)
-                  }
+                  onClick={() => {
+                    if (!reviewLoading) {
+                      setReviewingClaim(null);
+                      setReviewError("");
+                    }
+                  }}
                 >
                   ×
                 </button>
-
               </div>
 
-
               <div className="claim-review-message">
-
                 <small>
-                  CLAIM MESSAGE
+                  {reviewingItemIsLost
+                    ? "FINDER MESSAGE"
+                    : "CLAIM MESSAGE"}
                 </small>
 
                 <p>
                   {reviewingClaim.message ||
                     "No message was provided."}
                 </p>
-
               </div>
-
 
               <div className="claim-review-warning">
-
-                <span>
-                  ✦
-                </span>
+                <span>✦</span>
 
                 <p>
-                  Only approve this request when the
-                  claimant has provided enough information
-                  to verify that the item belongs to them.
+                  {reviewingItemIsLost
+                    ? "Only approve this response when the finder has provided enough information to help verify the item and arrange a safe handover."
+                    : "Only approve this request when the claimant has provided enough information to verify that the item belongs to them."}
                 </p>
-
               </div>
 
-
               {reviewError && (
-
                 <div className="claim-review-error">
                   {reviewError}
                 </div>
-
               )}
-
 
               <div className="claim-review-actions">
 
@@ -647,9 +609,8 @@ function MyItems() {
                 >
                   {reviewLoading
                     ? "Updating..."
-                    : "Reject claim"}
+                    : "Reject"}
                 </button>
-
 
                 <button
                   type="button"
@@ -664,19 +625,15 @@ function MyItems() {
                 >
                   {reviewLoading
                     ? "Updating..."
-                    : "Approve claim"}
+                    : "Approve"}
                 </button>
 
               </div>
-
             </div>
-
           </div>
-
         )}
 
       </div>
-
     </div>
   );
 }

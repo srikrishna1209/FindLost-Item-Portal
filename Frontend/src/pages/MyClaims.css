@@ -1360,3 +1360,159 @@
     text-align: center;
   }
 }
+
+/* =========================================================
+   APPROVED CLAIM — HANDOVER CONTACT
+   ========================================================= */
+
+.my-claim-handover {
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #d9e7dc;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      135deg,
+      #f5fbf6 0%,
+      #edf7ef 100%
+    );
+}
+
+.my-claim-handover-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.my-claim-handover-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #dcecdf;
+  color: #5d9870;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.my-claim-handover-header span {
+  display: block;
+  margin-bottom: 4px;
+  color: #5d9870;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.my-claim-handover-header h4 {
+  margin: 0;
+  color: #1b2945;
+  font-size: 17px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.my-claim-contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid #dce7df;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.my-claim-contact-details {
+  min-width: 0;
+}
+
+.my-claim-contact-details > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #8490a3;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 1.15px;
+}
+
+.my-claim-contact-details strong {
+  display: block;
+  color: #1b2945;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 800;
+}
+
+.my-claim-contact-details a {
+  display: block;
+  margin-top: 4px;
+  color: #5d7188;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 500;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.my-claim-contact-details a:hover {
+  text-decoration: underline;
+}
+
+.my-claim-contact-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #5d9870;
+  color: #ffffff;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.my-claim-contact-button:hover {
+  background: #4f8963;
+  transform: translateY(-1px);
+}
+
+.my-claim-contact-unavailable {
+  margin-top: 15px;
+  padding: 12px 13px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #7c8797;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.my-claim-handover-note {
+  margin: 12px 2px 0;
+  color: #6d7b8d;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 650px) {
+  .my-claim-contact-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .my-claim-contact-button {
+    width: 100%;
+  }
+}

@@ -562,6 +562,20 @@
     );
 }
 
+.admin-dashboard-card.users {
+  background:
+    linear-gradient(
+      145deg,
+      #b83fb4ac,
+      #b83fb461
+    );
+}
+
+
+.admin-dashboard-card.users
+.admin-dashboard-card-icon {
+  color: #a55c48;
+}
 
 .admin-dashboard-card.claims
 .admin-dashboard-card-icon {

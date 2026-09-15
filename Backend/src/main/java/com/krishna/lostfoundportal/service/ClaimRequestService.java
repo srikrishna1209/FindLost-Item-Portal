@@ -30,7 +30,6 @@ public class ClaimRequestService {
         this.authService = authService;
     }
 
-
     // =========================================================
     // CREATE CLAIM
     // =========================================================
@@ -52,11 +51,8 @@ public class ClaimRequestService {
                 new ClaimRequest();
 
         claim.setUser(currentUser);
-
         claim.setItem(item);
-
         claim.setMessage(dto.getMessage());
-
         claim.setStatus("PENDING");
 
         claim.setCreatedAt(
@@ -66,7 +62,10 @@ public class ClaimRequestService {
         ClaimRequest saved =
                 claimRepository.save(claim);
 
-        return convertToDTO(saved);
+        return convertToDTO(
+                saved,
+                currentUser
+        );
     }
 
 
@@ -82,7 +81,12 @@ public class ClaimRequestService {
         return claimRepository
                 .findByUser(currentUser)
                 .stream()
-                .map(this::convertToDTO)
+                .map(claim ->
+                        convertToDTO(
+                                claim,
+                                currentUser
+                        )
+                )
                 .collect(Collectors.toList());
     }
 
@@ -108,8 +112,8 @@ public class ClaimRequestService {
 
 
         // SECURITY:
-        // Only the person who reported this item
-        // can see the claims for it.
+        // Only the person who reported the item
+        // can view its claims.
 
         if (
                 item.getUser() == null
@@ -127,7 +131,12 @@ public class ClaimRequestService {
         return claimRepository
                 .findByItem(item)
                 .stream()
-                .map(this::convertToDTO)
+                .map(claim ->
+                        convertToDTO(
+                                claim,
+                                currentUser
+                        )
+                )
                 .collect(Collectors.toList());
     }
 
@@ -192,11 +201,13 @@ public class ClaimRequestService {
         }
 
 
-        // Don't allow changing an already completed claim.
+        // Don't allow changing an already reviewed claim.
 
-        if (!"PENDING".equalsIgnoreCase(
-                claim.getStatus()
-        )) {
+        if (
+                !"PENDING".equalsIgnoreCase(
+                        claim.getStatus()
+                )
+        ) {
 
             throw new RuntimeException(
                     "This claim has already been reviewed."
@@ -213,7 +224,10 @@ public class ClaimRequestService {
                 claimRepository.save(claim);
 
 
-        return convertToDTO(updated);
+        return convertToDTO(
+                updated,
+                currentUser
+        );
     }
 
 
@@ -228,15 +242,17 @@ public class ClaimRequestService {
 
 
     // =========================================================
-    // DTO CONVERSION
+    // DTO CONVERSION + CONTACT SECURITY
     // =========================================================
 
     private ClaimRequestDTO convertToDTO(
-            ClaimRequest claim
+            ClaimRequest claim,
+            User currentUser
     ) {
 
         ClaimRequestDTO dto =
                 new ClaimRequestDTO();
+
 
         dto.setId(
                 claim.getId()
@@ -253,6 +269,76 @@ public class ClaimRequestService {
         dto.setStatus(
                 claim.getStatus()
         );
+
+
+        /*
+         * CONTACT INFORMATION
+         *
+         * Contact information is deliberately NOT returned
+         * while the claim is PENDING or REJECTED.
+         *
+         * It is returned only after APPROVED.
+         */
+
+        if (
+                "APPROVED".equalsIgnoreCase(
+                        claim.getStatus()
+                )
+        ) {
+
+            User claimant =
+                    claim.getUser();
+
+            LostItem item =
+                    claim.getItem();
+
+            User reporter =
+                    item != null
+                            ? item.getUser()
+                            : null;
+
+
+            if (
+                    claimant != null
+                    && reporter != null
+                    && currentUser != null
+            ) {
+
+                // Claimant sees reporter contact information.
+
+                if (
+                        currentUser.getId()
+                                .equals(claimant.getId())
+                ) {
+
+                    dto.setOtherUserName(
+                            reporter.getName()
+                    );
+
+                    dto.setOtherUserEmail(
+                            reporter.getEmail()
+                    );
+                }
+
+
+                // Reporter sees claimant contact information.
+
+                else if (
+                        currentUser.getId()
+                                .equals(reporter.getId())
+                ) {
+
+                    dto.setOtherUserName(
+                            claimant.getName()
+                    );
+
+                    dto.setOtherUserEmail(
+                            claimant.getEmail()
+                    );
+                }
+            }
+        }
+
 
         return dto;
     }

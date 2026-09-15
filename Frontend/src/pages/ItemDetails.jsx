@@ -145,14 +145,18 @@ function ItemDetails() {
 
     if (!message) {
       setClaimError(
-        "Please explain why you believe this item belongs to you."
+        isFound
+          ? "Please explain why you believe this item belongs to you."
+          : "Please explain where or how you found this item."
       );
       return;
     }
 
     if (message.length < 10) {
       setClaimError(
-        "Please provide a little more detail so the reporter can verify your claim."
+        isFound
+          ? "Please provide a little more detail so the reporter can verify your claim."
+          : "Please provide a little more detail so the owner can identify and verify the item."
       );
       return;
     }
@@ -575,20 +579,29 @@ function ItemDetails() {
 
               ) : (
 
-                <Link
-                  to="/found-items"
-                  className="item-details-primary-action"
+                <button
+                  type="button"
+                  className="item-details-primary-action item-details-found-response-action"
+                  onClick={openClaimForm}
+                  disabled={
+                    claimSubmitting ||
+                    claimSuccess
+                  }
                 >
 
                   <span>
-                    Browse found items
+                    {claimSuccess
+                      ? "Response sent"
+                      : "I found this item"}
                   </span>
 
                   <span>
-                    →
+                    {claimSuccess
+                      ? "✓"
+                      : "→"}
                   </span>
 
-                </Link>
+                </button>
 
               )}
 
@@ -608,22 +621,10 @@ function ItemDetails() {
                 CLAIM FORM
                 ================================================= */}
 
-            {isFound && claimOpen && (
+            {claimOpen && (
 
-              <div
-                id="claim-form"
-                style={{
-                  marginTop: "20px",
-                  padding: "22px",
-                  borderRadius: "18px",
-                  background:
-                    "linear-gradient(145deg, #fffaf5 0%, #f3f8f3 100%)",
-                  border:
-                    "1px solid #e5ddd4",
-                  boxShadow:
-                    "0 18px 40px rgba(30, 44, 67, 0.08)",
-                }}
-              >
+              <div id="claim-form" className="item-details-request-form">
+              
 
                 {!claimSuccess ? (
 
@@ -642,28 +643,19 @@ function ItemDetails() {
                       <div>
 
                         <div
-                          style={{
-                            color: "#d97859",
-                            fontSize: "9px",
-                            fontWeight: "800",
-                            letterSpacing: "1.6px",
-                            marginBottom: "5px",
-                          }}
+                          className="item-details-request-eyebrow"
                         >
-                          CLAIM REQUEST
+                          {isFound
+                            ? "CLAIM REQUEST"
+                            : "FOUND ITEM RESPONSE"}
                         </div>
 
                         <h3
-                          style={{
-                            margin: 0,
-                            color: "#18233f",
-                            fontFamily:
-                              'Georgia, "Times New Roman", serif',
-                            fontSize: "24px",
-                            lineHeight: "1.1",
-                          }}
+                          className="item-details-request-heading"
                         >
-                          Think this is yours?
+                          {isFound
+                            ? "Think this is yours?"
+                            : "Did you find this item?"}
                         </h3>
 
                       </div>
@@ -692,16 +684,10 @@ function ItemDetails() {
                     </div>
 
 
-                    <p
-                      style={{
-                        margin: "0 0 17px",
-                        color: "#778397",
-                        fontSize: "11px",
-                        lineHeight: "1.6",
-                      }}
-                    >
-                      Tell the person who reported this item
-                      why you believe it belongs to you.
+                    <p className="item-details-request-description">
+                      {isFound
+                        ? "Tell the person who reported this item why you believe it belongs to you."
+                        : "Tell the person who reported this lost item where or how you found it."}
                     </p>
 
 
@@ -713,7 +699,11 @@ function ItemDetails() {
                         );
                         setClaimError("");
                       }}
-                      placeholder="For example: This is my black wallet. It has my initials inside and I lost it near the college library..."
+                      placeholder={
+                        isFound
+                          ? "For example: This is my black wallet. It has my initials inside and I lost it near the college library..."
+                          : "For example: I found this black wallet near the college library. It has initials inside and I kept it safe..."
+                      }
                       rows="5"
                       disabled={claimSubmitting}
                       style={{
@@ -731,20 +721,7 @@ function ItemDetails() {
                         fontSize: "12px",
                         lineHeight: "1.6",
                       }}
-                      onFocus={(event) => {
-                        event.currentTarget.style.borderColor =
-                          "#d97859";
-
-                        event.currentTarget.style.boxShadow =
-                          "0 0 0 4px rgba(217, 120, 89, 0.08)";
-                      }}
-                      onBlur={(event) => {
-                        event.currentTarget.style.borderColor =
-                          "#dfe4ea";
-
-                        event.currentTarget.style.boxShadow =
-                          "none";
-                      }}
+                      className="item-details-request-textarea"
                     />
 
 
@@ -825,7 +802,9 @@ function ItemDetails() {
                       >
                         {claimSubmitting
                           ? "Submitting..."
-                          : "Submit Claim →"}
+                          : isFound
+                            ? "Submit Claim →"
+                            : "Send to Owner →"}
                       </button>
 
                     </div>
@@ -873,31 +852,16 @@ function ItemDetails() {
                     </div>
 
 
-                    <h3
-                      style={{
-                        margin: "0 0 7px",
-                        color: "#18233f",
-                        fontFamily:
-                          'Georgia, "Times New Roman", serif',
-                        fontSize: "25px",
-                      }}
-                    >
-                      Claim submitted.
+                    <h3 className="item-details-request-success-heading">
+                      {isFound
+                        ? "Claim submitted."
+                        : "Response sent."}
                     </h3>
 
-
-                    <p
-                      style={{
-                        margin: "0 auto 17px",
-                        maxWidth: "320px",
-                        color: "#778397",
-                        fontSize: "11px",
-                        lineHeight: "1.6",
-                      }}
-                    >
-                      Your claim is now pending review.
-                      The person who reported the item can
-                      review your request.
+                    <p className="item-details-request-success-text">
+                      {isFound
+                        ? "Your claim is now pending review. The person who reported the item can review your request."
+                        : "Your response is now pending review. The person who reported the lost item can review your request."}
                     </p>
 
 
@@ -936,17 +900,24 @@ function ItemDetails() {
                 CLAIM NOTE
                 ================================================= */}
 
-            {isFound && !claimOpen && !claimSuccess && (
+            {!claimOpen && !claimSuccess && (
 
-              <div className="item-details-claim-note">
+              <div
+                className={`item-details-claim-note ${
+                  !isFound
+                    ? "item-details-found-response-note"
+                    : ""
+                }`}
+              >
 
                 <span>
                   ✦
                 </span>
 
                 <p>
-                  Think this is yours? Submit a claim with
-                  details that can help verify your ownership.
+                  {isFound
+                    ? "Think this is yours? Submit a claim with details that can help verify your ownership."
+                    : "Found this item? Let the person who reported it know where or how you found it."}
                 </p>
 
               </div>

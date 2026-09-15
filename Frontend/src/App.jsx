@@ -1,5 +1,10 @@
+import About from "./pages/About";
+import Privacy from "./pages/Privacy";
+import AdminUsers from "./pages/AdminUsers";
+import Settings from "./pages/Settings";
 import AdminItems from "./pages/AdminItems";
 import AdminClaims from "./pages/AdminClaims";
+import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
 import AdminContactMessages from "./pages/AdminContactMessages";
@@ -110,6 +115,16 @@ function App() {
           path="/contact"
           element={<Contact />}
         />
+
+        <Route
+         path="/about"
+         element={<About />}
+        />
+
+        <Route
+         path="/privacy"
+         element={<Privacy />}
+        />
         
         
         <Route element={<AdminRoute />}>
@@ -132,8 +147,22 @@ function App() {
          path="/admin/items"
          element={<AdminItems />}
        />
+       <Route
+         path="/admin/users"
+         element={<AdminUsers />}
+       />
 
        </Route>
+
+       <Route
+         path="/profile"
+         element={<Profile />}
+       />
+
+       <Route
+         path="/settings"
+         element={<Settings />}
+       />
 
       </Routes>
 

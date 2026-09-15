@@ -1,7 +1,28 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const navigate = useNavigate();
+
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const handleHomeSearch = (e) => {
+    e.preventDefault();
+
+    const keyword = searchKeyword.trim();
+
+    if (!keyword) {
+      navigate("/lost-items");
+      return;
+    }
+
+    navigate(
+      `/lost-items?keyword=${encodeURIComponent(keyword)}`
+    );
+  };
+
   return (
     <div className="findlost-home">
-
 
       {/* ================= HERO ================= */}
 
@@ -27,13 +48,19 @@ function Home() {
 
           <div className="hero-actions">
 
-            <a href="/report-lost" className="lost-action">
+            <a
+              href="/report-lost"
+              className="lost-action"
+            >
               <span>◆</span>
               I lost something
               <b>→</b>
             </a>
 
-            <a href="/report-found" className="found-action">
+            <a
+              href="/report-found"
+              className="found-action"
+            >
               <span>⌖</span>
               I found something
               <b>→</b>
@@ -52,7 +79,6 @@ function Home() {
               <span className="avatar avatar-two">A</span>
               <span className="avatar avatar-three">R</span>
               <span className="avatar avatar-four">S</span>
-
               <span className="avatar-plus">+</span>
 
             </div>
@@ -165,7 +191,10 @@ function Home() {
 
       <section className="home-search-section">
 
-        <div className="home-search">
+        <form
+          className="home-search"
+          onSubmit={handleHomeSearch}
+        >
 
           <span className="search-icon">
             ⌕
@@ -173,14 +202,18 @@ function Home() {
 
           <input
             type="text"
+            value={searchKeyword}
+            onChange={(e) =>
+              setSearchKeyword(e.target.value)
+            }
             placeholder="Search for items (e.g. wallet, AirPods, college ID...)"
           />
 
-          <button>
+          <button type="submit">
             Search
           </button>
 
-        </div>
+        </form>
 
       </section>
 
@@ -192,6 +225,7 @@ function Home() {
         <div className="section-heading">
 
           <div>
+
             <span className="section-label">
               BROWSE CATEGORIES
             </span>
@@ -199,6 +233,7 @@ function Home() {
             <h2>
               What are you looking for?
             </h2>
+
           </div>
 
           <a href="/lost-items">
@@ -210,7 +245,6 @@ function Home() {
 
         <div className="category-grid">
 
-
           {/* ELECTRONICS */}
 
           <a
@@ -219,13 +253,16 @@ function Home() {
           >
 
             <div className="category-image">
+
               <img
                 src="/src/assets/iphone.jpg"
                 alt="Electronics"
               />
+
             </div>
 
             <div className="category-info">
+
               <h3>Electronics</h3>
 
               <p>
@@ -233,6 +270,7 @@ function Home() {
                 <br />
                 earbuds and more
               </p>
+
             </div>
 
             <span className="category-arrow">
@@ -250,13 +288,16 @@ function Home() {
           >
 
             <div className="category-image">
+
               <img
                 src="/src/assets/id-card.jpg"
                 alt="IDs and Documents"
               />
+
             </div>
 
             <div className="category-info">
+
               <h3>IDs & Documents</h3>
 
               <p>
@@ -264,6 +305,7 @@ function Home() {
                 <br />
                 IDs and documents
               </p>
+
             </div>
 
             <span className="category-arrow">
@@ -281,13 +323,16 @@ function Home() {
           >
 
             <div className="category-image">
+
               <img
                 src="/src/assets/backpack.jpg"
                 alt="Bags and Wallets"
               />
+
             </div>
 
             <div className="category-info">
+
               <h3>Bags & Wallets</h3>
 
               <p>
@@ -295,6 +340,7 @@ function Home() {
                 <br />
                 wallets and more
               </p>
+
             </div>
 
             <span className="category-arrow">
@@ -312,13 +358,16 @@ function Home() {
           >
 
             <div className="category-image">
+
               <img
                 src="/src/assets/keys.jpg"
                 alt="Keys"
               />
+
             </div>
 
             <div className="category-info">
+
               <h3>Keys & Others</h3>
 
               <p>
@@ -326,6 +375,7 @@ function Home() {
                 <br />
                 and other items
               </p>
+
             </div>
 
             <span className="category-arrow">
@@ -369,6 +419,7 @@ function Home() {
           <div className="recent-card">
 
             <div className="recent-image">
+
               <img
                 src="/src/assets/iphone.jpg"
                 alt="iPhone"
@@ -377,6 +428,7 @@ function Home() {
               <span className="lost-tag">
                 LOST
               </span>
+
             </div>
 
             <div className="recent-info">
@@ -390,6 +442,7 @@ function Home() {
           <div className="recent-card">
 
             <div className="recent-image">
+
               <img
                 src="/src/assets/wallet.jpg"
                 alt="Wallet"
@@ -398,6 +451,7 @@ function Home() {
               <span className="found-tag">
                 FOUND
               </span>
+
             </div>
 
             <div className="recent-info">
@@ -411,6 +465,7 @@ function Home() {
           <div className="recent-card">
 
             <div className="recent-image">
+
               <img
                 src="/src/assets/airpods.jpg"
                 alt="AirPods"
@@ -419,6 +474,7 @@ function Home() {
               <span className="found-tag">
                 FOUND
               </span>
+
             </div>
 
             <div className="recent-info">
@@ -432,6 +488,7 @@ function Home() {
           <div className="recent-card">
 
             <div className="recent-image">
+
               <img
                 src="/src/assets/backpack.jpg"
                 alt="Backpack"
@@ -440,6 +497,7 @@ function Home() {
               <span className="lost-tag">
                 LOST
               </span>
+
             </div>
 
             <div className="recent-info">
@@ -531,8 +589,15 @@ function Home() {
       <footer className="home-footer" id="contact">
 
         <div className="footer-logo">
-          <span className="logo-box">F</span>
-          <strong>FindLost</strong>
+
+          <span className="logo-box">
+            F
+          </span>
+
+          <strong>
+            FindLost
+          </strong>
+
         </div>
 
         <p>
@@ -540,9 +605,19 @@ function Home() {
         </p>
 
         <div className="footer-links">
-          <a href="/about">About</a>
-          <a href="/contact">Contact</a>
-          <a href="/privacy">Privacy</a>
+
+          <a href="/about">
+            About
+          </a>
+
+          <a href="/contact">
+            Contact
+          </a>
+
+          <a href="/privacy">
+            Privacy
+          </a>
+
         </div>
 
       </footer>

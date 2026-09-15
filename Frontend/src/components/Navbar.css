@@ -1,36 +1,62 @@
+/* =========================================================
+   FINDLOST — NAVBAR
+   ========================================================= */
+
 .navbar {
   width: 100%;
   background: #fffdf9;
   border-bottom: 1px solid #eee8df;
+
   position: relative;
   z-index: 1000;
+
+  overflow: visible;
 }
+
+
+/* =========================================================
+   NAVBAR INNER
+   ========================================================= */
 
 .navbar-inner {
   max-width: 1280px;
+
   height: 82px;
+
   margin: 0 auto;
+
   padding: 0 44px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  box-sizing: border-box;
+
+  position: relative;
+
+  overflow: visible;
 }
 
-/* =========================
+
+/* =========================================================
    LOGO
-========================= */
+   ========================================================= */
 
 .navbar-logo {
   display: flex;
   align-items: center;
+
   gap: 3px;
 
   text-decoration: none;
+
   font-size: 24px;
   font-weight: 800;
+
   letter-spacing: -1px;
 }
+
 
 .logo-box {
   width: 38px;
@@ -43,7 +69,7 @@
   margin-right: 8px;
 
   background: #19243d;
-  color: white;
+  color: #ffffff;
 
   border-radius: 11px;
 
@@ -51,38 +77,30 @@
   font-weight: 800;
 }
 
+
 .logo-find {
   color: #17233d;
 }
+
 
 .logo-lost {
   color: #df7659;
 }
 
-/* =========================
+
+/* =========================================================
    NAV LINKS
-========================= */
+   ========================================================= */
 
 .navbar-links {
   display: flex;
   align-items: center;
+
   gap: 38px;
+
   margin-left: 70px;
 }
 
-.nav-link {
-  position: relative;
-
-  padding: 30px 0;
-
-  color: #34435f;
-  text-decoration: none;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  transition: color 0.2s ease;
-}
 
 .nav-link {
   position: relative;
@@ -90,6 +108,7 @@
   padding: 30px 0;
 
   color: #34435f;
+
   text-decoration: none;
 
   font-size: 15px;
@@ -100,15 +119,19 @@
     transform 0.25s ease;
 }
 
+
 .nav-link:hover {
   color: #df7659;
+
   transform: translateY(-2px);
 }
+
 
 .nav-link::after {
   content: "";
 
   position: absolute;
+
   left: 50%;
   bottom: 19px;
 
@@ -124,29 +147,47 @@
   transition: width 0.25s ease;
 }
 
+
 .nav-link:hover::after {
   width: 100%;
 }
+
 
 .nav-link.active {
   color: #df7659;
 }
 
+
 .nav-link.active::after {
   width: 100%;
 }
-/* =========================
+
+
+/* =========================================================
    RIGHT SIDE
-========================= */
+   ========================================================= */
 
 .navbar-actions {
   display: flex;
   align-items: center;
+
   gap: 25px;
+
+  height: 100%;
+
+  position: relative;
+
+  overflow: visible;
 }
+
+
+/* =========================================================
+   LOGIN / JOIN
+   ========================================================= */
 
 .login-link {
   color: #17233d;
+
   text-decoration: none;
 
   font-size: 15px;
@@ -155,13 +196,16 @@
   transition: color 0.2s ease;
 }
 
+
 .login-link:hover {
   color: #df7659;
 }
 
+
 .join-button {
   background: #df7659;
-  color: white;
+
+  color: #ffffff;
 
   text-decoration: none;
 
@@ -172,7 +216,8 @@
   font-size: 14px;
   font-weight: 700;
 
-  box-shadow: 0 8px 20px rgba(223, 118, 89, 0.18);
+  box-shadow:
+    0 8px 20px rgba(223, 118, 89, 0.18);
 
   transition:
     transform 0.2s ease,
@@ -180,24 +225,52 @@
     background 0.2s ease;
 }
 
+
 .join-button:hover {
   background: #d7684c;
+
   transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(223, 118, 89, 0.25);
+
+  box-shadow:
+    0 12px 25px rgba(223, 118, 89, 0.25);
 }
 
-/* =========================
-   PROFILE BUTTON
-========================= */
+
+/* =========================================================
+   PROFILE WRAPPER
+   ========================================================= */
 
 .profile-wrapper {
-  position: relative;
+  position: static !important;
+
+  display: flex !important;
+
+  align-items: center;
+
+  height: 100%;
+
+  flex: 0 0 auto;
+
+  overflow: visible !important;
 }
 
+
+/* =========================================================
+   PROFILE BUTTON
+   ========================================================= */
+
 .profile-button {
+  height: 58px;
+
+  width: auto;
+
   display: flex;
+
   align-items: center;
+
   gap: 9px;
+
+  box-sizing: border-box;
 
   border: 1px solid #e6dfd5;
 
@@ -212,24 +285,42 @@
   cursor: pointer;
 
   font-family: inherit;
+
   font-size: 14px;
+
   font-weight: 700;
 
-  transition: all 0.2s ease;
+  position: relative;
+
+  z-index: 2;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
+
 
 .profile-button:hover {
   border-color: #df7659;
-  box-shadow: 0 6px 18px rgba(25, 36, 61, 0.08);
+
+  background: #fffdfb;
+
+  box-shadow:
+    0 6px 18px rgba(25, 36, 61, 0.08);
 }
+
 
 .profile-avatar {
   width: 34px;
   height: 34px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
+
+  flex: 0 0 34px;
 
   background: #e7f1ea;
 
@@ -238,28 +329,53 @@
   font-size: 17px;
 }
 
+
+.profile-text {
+  white-space: nowrap;
+}
+
+
 .profile-arrow {
   font-size: 9px;
+
   color: #70809b;
 
-  transition: transform 0.2s ease;
+  transition:
+    transform 0.2s ease;
 }
+
 
 .profile-arrow.open {
   transform: rotate(180deg);
 }
 
-/* =========================
+
+/* =========================================================
    PROFILE DROPDOWN
-========================= */
+
+   IMPORTANT:
+   The menu is anchored to .navbar-actions rather than
+   .profile-wrapper. This removes the unwanted vertical gap.
+   ========================================================= */
 
 .profile-menu {
-  position: absolute;
+  position: absolute !important;
 
-  top: calc(100% + 12px);
-  right: 0;
+  top: 70px !important;
 
-  width: 270px;
+  right: 0 !important;
+
+  left: auto !important;
+
+  width: 270px !important;
+
+  max-width: calc(100vw - 32px);
+
+  box-sizing: border-box;
+
+  margin: 0 !important;
+
+  padding: 10px !important;
 
   background: #fffdf9;
 
@@ -267,42 +383,61 @@
 
   border-radius: 16px;
 
-  padding: 10px;
-
   box-shadow:
     0 20px 45px rgba(25, 36, 61, 0.14),
     0 4px 12px rgba(25, 36, 61, 0.05);
 
-  animation: profileMenuIn 0.18s ease;
+  z-index: 99999 !important;
+
+  transform-origin: top right;
+
+  animation:
+    profileMenuIn 0.16s ease-out;
 }
+
 
 @keyframes profileMenuIn {
   from {
     opacity: 0;
-    transform: translateY(-5px);
+
+    transform:
+      translateY(-4px)
+      scale(0.985);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
 }
 
+
+/* =========================================================
+   DROPDOWN HEADER
+   ========================================================= */
+
 .profile-menu-header {
   display: flex;
+
   align-items: center;
+
   gap: 12px;
 
   padding: 12px;
 }
 
+
 .profile-menu-avatar {
   width: 42px;
   height: 42px;
 
-  flex-shrink: 0;
+  flex: 0 0 42px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
@@ -313,6 +448,7 @@
   font-size: 19px;
 }
 
+
 .profile-menu-header strong {
   display: block;
 
@@ -320,6 +456,7 @@
 
   font-size: 14px;
 }
+
 
 .profile-menu-header span {
   display: block;
@@ -331,6 +468,11 @@
   font-size: 12px;
 }
 
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
 .profile-menu-divider {
   height: 1px;
 
@@ -339,11 +481,20 @@
   margin: 6px 0;
 }
 
+
+/* =========================================================
+   MENU ITEMS
+   ========================================================= */
+
 .profile-menu-item {
   width: 100%;
 
+  min-height: 43px;
+
   display: flex;
+
   align-items: center;
+
   gap: 12px;
 
   box-sizing: border-box;
@@ -351,6 +502,7 @@
   padding: 11px 12px;
 
   border: none;
+
   border-radius: 9px;
 
   background: transparent;
@@ -362,6 +514,7 @@
   font-family: inherit;
 
   font-size: 14px;
+
   font-weight: 600;
 
   cursor: pointer;
@@ -369,26 +522,37 @@
   text-align: left;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background 0.18s ease,
+    color 0.18s ease,
+    transform 0.18s ease;
 }
+
 
 .profile-menu-item:hover {
   background: #f7eee8;
+
   color: #df7659;
+
+  transform: translateX(2px);
 }
 
-.profile-menu-item span {
+
+.profile-menu-item > span {
   width: 22px;
+
+  flex: 0 0 22px;
+
   text-align: center;
 }
+
 
 .logout-item {
   color: #c95e48;
 }
 
+
 /* =========================================================
-   ADMIN MENU ITEM
+   ADMIN MENU
    ========================================================= */
 
 .admin-menu-item {
@@ -425,22 +589,29 @@
 .admin-menu-text {
   width: auto !important;
 
+  flex: 1 !important;
+
   text-align: left !important;
 }
 
-/* =========================
+
+/* =========================================================
    RESPONSIVE
-========================= */
+   ========================================================= */
 
 @media (max-width: 1000px) {
+
   .navbar-inner {
     padding: 0 25px;
   }
 
+
   .navbar-links {
     gap: 20px;
+
     margin-left: 20px;
   }
+
 
   .navbar-links .nav-link:nth-child(4),
   .navbar-links .nav-link:nth-child(5) {
@@ -448,25 +619,43 @@
   }
 }
 
+
 @media (max-width: 700px) {
+
   .navbar-inner {
     height: 70px;
+
     padding: 0 18px;
   }
+
 
   .navbar-links {
     display: none;
   }
 
+
+  .profile-button {
+    height: 52px;
+
+    padding-right: 8px;
+  }
+
+
   .profile-text {
     display: none;
   }
 
-  .profile-button {
-    padding-right: 8px;
-  }
 
   .join-button {
     padding: 12px 15px;
+  }
+
+
+  .profile-menu {
+    top: 64px !important;
+
+    width: 250px !important;
+
+    right: 0 !important;
   }
 }

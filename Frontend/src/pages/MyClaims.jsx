@@ -478,6 +478,79 @@ function MyClaims() {
                       </div>
 
 
+                      {status === "APPROVED" && (
+                        <div className="my-claim-handover">
+
+                          <div className="my-claim-handover-header">
+                            <div className="my-claim-handover-icon">
+                              ✓
+                            </div>
+
+                            <div>
+                              <span>
+                                CLAIM APPROVED
+                              </span>
+
+                              <h4>
+                                Arrange the handover
+                              </h4>
+                            </div>
+                          </div>
+
+
+                          {claim.otherUserName ||
+                          claim.otherUserEmail ? (
+
+                            <div className="my-claim-contact-card">
+
+                              <div className="my-claim-contact-details">
+                                <span>
+                                  REPORTER CONTACT
+                                </span>
+
+                                <strong>
+                                  {claim.otherUserName ||
+                                    "Reporter"}
+                                </strong>
+
+                                {claim.otherUserEmail && (
+                                  <a
+                                    href={`mailto:${claim.otherUserEmail}`}
+                                  >
+                                    {claim.otherUserEmail}
+                                  </a>
+                                )}
+                              </div>
+
+                              {claim.otherUserEmail && (
+                                <a
+                                  href={`mailto:${claim.otherUserEmail}?subject=FindLost%20claim%20%23${claim.id}`}
+                                  className="my-claim-contact-button"
+                                >
+                                  Contact User
+                                </a>
+                              )}
+
+                            </div>
+
+                          ) : (
+
+                            <div className="my-claim-contact-unavailable">
+                              Contact details are not available yet.
+                            </div>
+
+                          )}
+
+
+                          <p className="my-claim-handover-note">
+                            Arrange a safe meeting place and verify the
+                            item details before completing the handover.
+                          </p>
+
+                        </div>
+                      )}
+
+
                       <div className="my-claim-footer">
 
                         <span>
