@@ -30,6 +30,7 @@ public class ClaimRequestService {
         this.authService = authService;
     }
 
+
     // =========================================================
     // CREATE CLAIM
     // =========================================================
@@ -161,7 +162,6 @@ public class ClaimRequestService {
                                 )
                         );
 
-
         LostItem item =
                 claim.getItem();
 
@@ -232,6 +232,169 @@ public class ClaimRequestService {
 
 
     // =========================================================
+    // COMPLETE HANDOVER
+    // =========================================================
+    //
+    // APPROVED
+    //      ↓
+    // HANDOVER_COMPLETED
+    //
+    // ITEM
+    //      ↓
+    // RETURNED
+    //
+    // The item will no longer appear on:
+    // - Lost Items
+    // - Found Items
+    //
+    // It will remain available through:
+    // - Returned Items
+    // - My Claims
+    // =========================================================
+
+    public ClaimRequestDTO completeHandover(
+            Long claimId
+    ) {
+
+        User currentUser =
+                authService.getCurrentUser();
+
+        ClaimRequest claim =
+                claimRepository.findById(claimId)
+                        .orElseThrow(() ->
+                                new ResourceNotFoundException(
+                                        "Claim request not found"
+                                )
+                        );
+
+        LostItem item =
+                claim.getItem();
+
+        User claimant =
+                claim.getUser();
+
+        User reporter =
+                item != null
+                        ? item.getUser()
+                        : null;
+
+
+        // =====================================================
+        // SECURITY
+        // =====================================================
+
+        boolean isClaimant =
+                claimant != null
+                && claimant.getId()
+                        .equals(currentUser.getId());
+
+        boolean isReporter =
+                reporter != null
+                && reporter.getId()
+                        .equals(currentUser.getId());
+
+
+        if (!isClaimant && !isReporter) {
+
+            throw new RuntimeException(
+                    "Only the claimant or item reporter can complete the handover."
+            );
+        }
+
+
+        // =====================================================
+        // CLAIM MUST BE APPROVED
+        // =====================================================
+
+        if (
+                !"APPROVED".equalsIgnoreCase(
+                        claim.getStatus()
+                )
+        ) {
+
+            throw new RuntimeException(
+                    "Only an approved claim can be marked as handover completed."
+            );
+        }
+
+
+        // =====================================================
+        // COMPLETE CLAIM
+        // =====================================================
+
+        claim.setStatus(
+                "HANDOVER_COMPLETED"
+        );
+
+
+        // =====================================================
+        // MARK ITEM AS RETURNED
+        // =====================================================
+
+        if (item != null) {
+
+            item.setStatus(
+                    "RETURNED"
+            );
+
+            itemRepository.save(item);
+        }
+
+
+        // =====================================================
+        // SAVE CLAIM
+        // =====================================================
+
+        ClaimRequest updated =
+                claimRepository.save(claim);
+
+
+        return convertToDTO(
+                updated,
+                currentUser
+        );
+    }
+
+
+    // =========================================================
+    // GET ALL RETURNED / COMPLETED ITEMS
+    // =========================================================
+    //
+    // PUBLIC RETURNED ITEMS HISTORY
+    //
+    // Shows EVERY successfully completed handover,
+    // regardless of which user is viewing the page.
+    //
+    // Contact information is NOT exposed here.
+    // =========================================================
+
+    public List<ClaimRequestDTO> getAllCompletedHandovers() {
+
+        List<ClaimRequest> completedClaims =
+                claimRepository.findAll()
+                        .stream()
+                        .filter(claim ->
+                                "HANDOVER_COMPLETED"
+                                        .equalsIgnoreCase(
+                                                claim.getStatus()
+                                        )
+                        )
+                        .collect(Collectors.toList());
+
+
+        return completedClaims
+                .stream()
+                .map(claim ->
+                        convertToDTO(
+                                claim,
+                                null
+                        )
+                )
+                .collect(Collectors.toList());
+    }
+
+
+    // =========================================================
     // ADMIN / EXISTING SUPPORT
     // =========================================================
 
@@ -277,11 +440,22 @@ public class ClaimRequestService {
          * Contact information is deliberately NOT returned
          * while the claim is PENDING or REJECTED.
          *
-         * It is returned only after APPROVED.
+         * It is returned after APPROVED or HANDOVER_COMPLETED
+         * only when the logged-in user is either:
+         * - the claimant
+         * - the reporter
+         *
+         * For the public Returned Items page,
+         * currentUser is null, so no contact information
+         * is exposed.
          */
 
         if (
                 "APPROVED".equalsIgnoreCase(
+                        claim.getStatus()
+                )
+                ||
+                "HANDOVER_COMPLETED".equalsIgnoreCase(
                         claim.getStatus()
                 )
         ) {

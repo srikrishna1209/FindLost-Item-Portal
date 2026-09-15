@@ -1516,3 +1516,344 @@
     width: 100%;
   }
 }
+/* =========================================================
+   HANDOVER COMPLETE — NEW FEATURE
+   Uses the existing FindLost theme exactly
+   ========================================================= */
+
+/* Keep the summary elegant when the new Returned card appears */
+.my-claims-summary {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+
+/* =========================================================
+   RETURNED SUMMARY CARD
+   ========================================================= */
+
+.my-claims-summary-card.completed {
+  border-color: #d9e7dc;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.97),
+      rgba(242, 248, 243, 0.94)
+    );
+}
+
+.my-claims-summary-card.completed
+.my-claims-summary-icon {
+  background: #e1f0e5;
+  color: #5d9870;
+}
+
+
+/* =========================================================
+   SECTION HEADER LINKS
+   ========================================================= */
+
+.my-claims-heading-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.my-claims-returned-link {
+  padding-bottom: 4px;
+  color: #5d9870;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.my-claims-returned-link:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   HANDOVER COMPLETION AREA
+   ========================================================= */
+
+.my-claim-complete-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 16px;
+  padding: 16px 17px;
+  border: 1px solid #dce8df;
+  border-radius: 14px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(238, 247, 240, 0.76)
+    );
+}
+
+.my-claim-complete-text {
+  min-width: 0;
+}
+
+.my-claim-complete-text > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #5d9870;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.my-claim-complete-text strong {
+  display: block;
+  margin: 0;
+  color: #1b2945;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.my-claim-complete-text p {
+  margin: 4px 0 0;
+  color: #718095;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MARK HANDOVER COMPLETE BUTTON
+   ========================================================= */
+
+.my-claim-complete-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 17px;
+  border: 1px solid #5d9870;
+  border-radius: 999px;
+  background: #5d9870;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow:
+    0 9px 20px rgba(93, 152, 112, 0.18);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.my-claim-complete-button:hover:not(:disabled) {
+  background: #4f8963;
+  border-color: #4f8963;
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 24px rgba(93, 152, 112, 0.23);
+}
+
+.my-claim-complete-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.my-claim-complete-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   HANDOVER ERROR
+   ========================================================= */
+
+.my-claim-handover-error {
+  margin-bottom: 18px;
+  padding: 13px 16px;
+  border: 1px solid #efd6d3;
+  border-radius: 13px;
+  background: #fbefed;
+  color: #a95d56;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   HANDOVER COMPLETED CARD
+   ========================================================= */
+
+.my-claim-completed-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #d9e7dc;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      135deg,
+      #f5fbf6 0%,
+      #edf7ef 100%
+    );
+}
+
+.my-claim-completed-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #dcecdf;
+  color: #5d9870;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.my-claim-completed-card > div:nth-child(2) {
+  min-width: 0;
+  flex: 1;
+}
+
+.my-claim-completed-card span {
+  display: block;
+  margin-bottom: 5px;
+  color: #5d9870;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+}
+
+.my-claim-completed-card h4 {
+  margin: 0;
+  color: #1b2945;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.my-claim-completed-card p {
+  margin: 5px 0 0;
+  color: #6d7b8d;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.my-claim-view-returned {
+  flex-shrink: 0;
+  color: #5d9870;
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.my-claim-view-returned:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .my-claims-summary {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .my-claim-complete-area {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .my-claim-complete-button {
+    width: 100%;
+  }
+
+  .my-claim-completed-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .my-claim-view-returned {
+    width: 100%;
+    padding-left: 56px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .my-claims-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .my-claims-heading-actions {
+    width: 100%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 14px;
+  }
+
+  .my-claim-complete-area {
+    padding: 15px;
+  }
+
+  .my-claim-complete-button {
+    min-height: 45px;
+    width: 100%;
+  }
+
+  .my-claim-completed-card {
+    padding: 16px;
+  }
+
+  .my-claim-view-returned {
+    padding-left: 0;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .my-claims-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .my-claim-completed-card {
+    flex-direction: column;
+  }
+
+  .my-claim-completed-icon {
+    width: 40px;
+    height: 40px;
+  }
+}

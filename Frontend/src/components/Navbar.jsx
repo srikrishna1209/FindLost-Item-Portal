@@ -31,7 +31,6 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
-
     setMenuOpen(false);
   };
 
@@ -278,6 +277,22 @@ function Navbar() {
                   >
                     <span>✓</span>
                     My Claims
+                  </Link>
+
+
+                  {/* ======================================
+                      RETURNED ITEMS
+                      ====================================== */}
+
+                  <Link
+                    to="/returned-items"
+                    className="profile-menu-item"
+                    onClick={() =>
+                      setMenuOpen(false)
+                    }
+                  >
+                    <span>✓</span>
+                    Returned Items
                   </Link>
 
 

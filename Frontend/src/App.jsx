@@ -17,6 +17,7 @@ import FoundItems from "./pages/FoundItems";
 import ReportLost from "./pages/ReportLost";
 import ReportFound from "./pages/ReportFound";
 import ItemDetails from "./pages/ItemDetails";
+import ReturnedItems from "./pages/ReturnedItems";
 
 import Navbar from "./components/Navbar";
 
@@ -104,6 +105,11 @@ function App() {
         <Route
           path="/my-items"
           element={<MyItems />}
+        />
+
+        <Route
+          path="/returned-items"
+          element={<ReturnedItems />}
         />
 
         <Route

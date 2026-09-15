@@ -10,6 +10,9 @@ function MyClaims() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [handoverLoading, setHandoverLoading] = useState(null);
+  const [handoverError, setHandoverError] = useState("");
+
   useEffect(() => {
     loadMyClaims();
   }, []);
@@ -53,6 +56,55 @@ function MyClaims() {
   };
 
 
+  // =========================================================
+  // COMPLETE HANDOVER
+  // =========================================================
+
+  const handleCompleteHandover = async (claimId) => {
+    const confirmed = window.confirm(
+      "Have you successfully received the item and completed the handover?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setHandoverLoading(claimId);
+      setHandoverError("");
+
+      await api.put(
+        `/api/claims/${claimId}/handover-complete`
+      );
+
+      await loadMyClaims();
+
+    } catch (err) {
+      console.error(
+        "Completing handover failed:",
+        err
+      );
+
+      if (err.response?.data?.message) {
+        setHandoverError(
+          err.response.data.message
+        );
+      } else if (err.response?.status === 403) {
+        setHandoverError(
+          "You are not allowed to complete this handover."
+        );
+      } else {
+        setHandoverError(
+          "Unable to complete the handover right now."
+        );
+      }
+
+    } finally {
+      setHandoverLoading(null);
+    }
+  };
+
+
   const itemMap = useMemo(() => {
     const map = {};
 
@@ -71,6 +123,10 @@ function MyClaims() {
       return "my-claims-status-approved";
     }
 
+    if (value === "HANDOVER_COMPLETED") {
+      return "my-claims-status-completed";
+    }
+
     if (value === "REJECTED") {
       return "my-claims-status-rejected";
     }
@@ -84,6 +140,10 @@ function MyClaims() {
 
     if (value === "APPROVED") {
       return "Approved";
+    }
+
+    if (value === "HANDOVER_COMPLETED") {
+      return "Returned";
     }
 
     if (value === "REJECTED") {
@@ -129,6 +189,13 @@ function MyClaims() {
   const rejectedCount = claims.filter(
     (claim) =>
       claim.status?.toUpperCase() === "REJECTED"
+  ).length;
+
+
+  const completedCount = claims.filter(
+    (claim) =>
+      claim.status?.toUpperCase() ===
+      "HANDOVER_COMPLETED"
   ).length;
 
 
@@ -292,6 +359,20 @@ function MyClaims() {
 
           </div>
 
+
+          <div className="my-claims-summary-card completed">
+
+            <div className="my-claims-summary-icon">
+              ✓
+            </div>
+
+            <div>
+              <span>Returned</span>
+              <strong>{completedCount}</strong>
+            </div>
+
+          </div>
+
         </section>
 
 
@@ -315,14 +396,32 @@ function MyClaims() {
 
             </div>
 
-            <Link
-              to="/found-items"
-              className="my-claims-browse-link"
-            >
-              Browse found items →
-            </Link>
+            <div className="my-claims-heading-actions">
+
+              <Link
+                to="/found-items"
+                className="my-claims-browse-link"
+              >
+                Browse found items →
+              </Link>
+
+              <Link
+                to="/returned-items"
+                className="my-claims-returned-link"
+              >
+                Returned items →
+              </Link>
+
+            </div>
 
           </div>
+
+
+          {handoverError && (
+            <div className="my-claim-handover-error">
+              {handoverError}
+            </div>
+          )}
 
 
           {claims.length === 0 ? (
@@ -373,6 +472,7 @@ function MyClaims() {
                 const status =
                   claim.status?.toUpperCase() ||
                   "PENDING";
+
 
                 return (
                   <article
@@ -478,15 +578,22 @@ function MyClaims() {
                       </div>
 
 
+                      {/* =================================================
+                          APPROVED → HANDOVER
+                          ================================================= */}
+
                       {status === "APPROVED" && (
+
                         <div className="my-claim-handover">
 
                           <div className="my-claim-handover-header">
+
                             <div className="my-claim-handover-icon">
                               ✓
                             </div>
 
                             <div>
+
                               <span>
                                 CLAIM APPROVED
                               </span>
@@ -494,7 +601,9 @@ function MyClaims() {
                               <h4>
                                 Arrange the handover
                               </h4>
+
                             </div>
+
                           </div>
 
 
@@ -504,6 +613,7 @@ function MyClaims() {
                             <div className="my-claim-contact-card">
 
                               <div className="my-claim-contact-details">
+
                                 <span>
                                   REPORTER CONTACT
                                 </span>
@@ -514,21 +624,27 @@ function MyClaims() {
                                 </strong>
 
                                 {claim.otherUserEmail && (
+
                                   <a
                                     href={`mailto:${claim.otherUserEmail}`}
                                   >
                                     {claim.otherUserEmail}
                                   </a>
+
                                 )}
+
                               </div>
 
+
                               {claim.otherUserEmail && (
+
                                 <a
                                   href={`mailto:${claim.otherUserEmail}?subject=FindLost%20claim%20%23${claim.id}`}
                                   className="my-claim-contact-button"
                                 >
                                   Contact User
                                 </a>
+
                               )}
 
                             </div>
@@ -547,9 +663,94 @@ function MyClaims() {
                             item details before completing the handover.
                           </p>
 
+
+                          {/* COMPLETE HANDOVER BUTTON */}
+
+                          <div className="my-claim-complete-area">
+
+                            <div className="my-claim-complete-text">
+
+                              <span>
+                                FINAL STEP
+                              </span>
+
+                              <strong>
+                                Did the handover happen successfully?
+                              </strong>
+
+                              <p>
+                                Use this only after you have
+                                received the item.
+                              </p>
+
+                            </div>
+
+
+                            <button
+                              type="button"
+                              className="my-claim-complete-button"
+                              disabled={
+                                handoverLoading === claim.id
+                              }
+                              onClick={() =>
+                                handleCompleteHandover(
+                                  claim.id
+                                )
+                              }
+                            >
+                              {handoverLoading === claim.id
+                                ? "Completing..."
+                                : "✓ Mark Handover Complete"}
+                            </button>
+
+                          </div>
+
                         </div>
                       )}
 
+
+                      {/* =================================================
+                          HANDOVER COMPLETED
+                          ================================================= */}
+
+                      {status === "HANDOVER_COMPLETED" && (
+
+                        <div className="my-claim-completed-card">
+
+                          <div className="my-claim-completed-icon">
+                            ✓
+                          </div>
+
+                          <div>
+
+                            <span>
+                              HANDOVER COMPLETED
+                            </span>
+
+                            <h4>
+                              Item successfully returned
+                            </h4>
+
+                            <p>
+                              This claim has been completed and
+                              recorded in your returned items.
+                            </p>
+
+                          </div>
+
+                          <Link
+                            to="/returned-items"
+                            className="my-claim-view-returned"
+                          >
+                            View Returned Items →
+                          </Link>
+
+                        </div>
+
+                      )}
+
+
+                      {/* FOOTER */}
 
                       <div className="my-claim-footer">
 

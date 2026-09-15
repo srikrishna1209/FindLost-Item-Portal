@@ -77,4 +77,32 @@ public class ClaimRequestController {
                 status
         );
     }
+
+
+    // =========================================================
+    // COMPLETE HANDOVER
+    // PUT /api/claims/{claimId}/handover-complete
+    // =========================================================
+
+    @PutMapping("/{claimId}/handover-complete")
+    public ClaimRequestDTO completeHandover(
+            @PathVariable Long claimId
+    ) {
+
+        return service.completeHandover(
+                claimId
+        );
+    }
+
+
+    // =========================================================
+    // MY RETURNED ITEMS / COMPLETED HANDOVERS
+    // GET /api/claims/my-completed
+    // =========================================================
+
+    @GetMapping("/my-completed")
+    public List<ClaimRequestDTO> getMyCompletedHandovers() {
+
+        return service.getAllCompletedHandovers();
+    }
 }
