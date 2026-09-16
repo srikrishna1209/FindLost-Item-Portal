@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import iphoneImage from "../assets/iphone.jpg";
+import idCardImage from "../assets/id-card.jpg";
+import backpackImage from "../assets/backpack.jpg";
+import keysImage from "../assets/keys.jpg";
+import walletImage from "../assets/wallet.jpg";
+import airpodsImage from "../assets/airpods.jpg";
+
 function Home() {
   const navigate = useNavigate();
 
@@ -68,7 +75,6 @@ function Home() {
 
           </div>
 
-
           {/* PEOPLE */}
 
           <div className="community">
@@ -92,7 +98,6 @@ function Home() {
 
         </div>
 
-
         {/* ================= HERO IMAGE ================= */}
 
         <div className="hero-visual">
@@ -109,13 +114,12 @@ function Home() {
             ◢
           </div>
 
-
           <div className="item-preview">
 
             <div className="item-image-wrapper">
 
               <img
-                src="/src/assets/iphone.jpg"
+                src={iphoneImage}
                 alt="Found iPhone"
                 className="hero-item-image"
               />
@@ -150,7 +154,6 @@ function Home() {
 
           </div>
 
-
           {/* LOCATION FLOATING CARD */}
 
           <div className="location-float">
@@ -165,7 +168,6 @@ function Home() {
             </div>
 
           </div>
-
 
           {/* FOUND FLOATING CARD */}
 
@@ -183,9 +185,7 @@ function Home() {
           </div>
 
         </div>
-
       </section>
-
 
       {/* ================= SEARCH ================= */}
 
@@ -217,7 +217,6 @@ function Home() {
 
       </section>
 
-
       {/* ================= CATEGORIES ================= */}
 
       <section className="categories-section">
@@ -242,7 +241,6 @@ function Home() {
 
         </div>
 
-
         <div className="category-grid">
 
           {/* ELECTRONICS */}
@@ -255,7 +253,7 @@ function Home() {
             <div className="category-image">
 
               <img
-                src="/src/assets/iphone.jpg"
+                src={iphoneImage}
                 alt="Electronics"
               />
 
@@ -279,7 +277,6 @@ function Home() {
 
           </a>
 
-
           {/* DOCUMENTS */}
 
           <a
@@ -290,7 +287,7 @@ function Home() {
             <div className="category-image">
 
               <img
-                src="/src/assets/id-card.jpg"
+                src={idCardImage}
                 alt="IDs and Documents"
               />
 
@@ -314,7 +311,6 @@ function Home() {
 
           </a>
 
-
           {/* BAGS */}
 
           <a
@@ -325,7 +321,7 @@ function Home() {
             <div className="category-image">
 
               <img
-                src="/src/assets/backpack.jpg"
+                src={backpackImage}
                 alt="Bags and Wallets"
               />
 
@@ -349,7 +345,6 @@ function Home() {
 
           </a>
 
-
           {/* KEYS */}
 
           <a
@@ -360,7 +355,7 @@ function Home() {
             <div className="category-image">
 
               <img
-                src="/src/assets/keys.jpg"
+                src={keysImage}
                 alt="Keys"
               />
 
@@ -388,7 +383,6 @@ function Home() {
 
       </section>
 
-
       {/* ================= RECENT ITEMS ================= */}
 
       <section className="recent-section">
@@ -413,7 +407,6 @@ function Home() {
 
         </div>
 
-
         <div className="recent-grid">
 
           <div className="recent-card">
@@ -421,7 +414,7 @@ function Home() {
             <div className="recent-image">
 
               <img
-                src="/src/assets/iphone.jpg"
+                src={iphoneImage}
                 alt="iPhone"
               />
 
@@ -438,13 +431,12 @@ function Home() {
 
           </div>
 
-
           <div className="recent-card">
 
             <div className="recent-image">
 
               <img
-                src="/src/assets/wallet.jpg"
+                src={walletImage}
                 alt="Wallet"
               />
 
@@ -461,13 +453,12 @@ function Home() {
 
           </div>
 
-
           <div className="recent-card">
 
             <div className="recent-image">
 
               <img
-                src="/src/assets/airpods.jpg"
+                src={airpodsImage}
                 alt="AirPods"
               />
 
@@ -484,13 +475,12 @@ function Home() {
 
           </div>
 
-
           <div className="recent-card">
 
             <div className="recent-image">
 
               <img
-                src="/src/assets/backpack.jpg"
+                src={backpackImage}
                 alt="Backpack"
               />
 
@@ -510,7 +500,6 @@ function Home() {
         </div>
 
       </section>
-
 
       {/* ================= HOW IT WORKS ================= */}
 
@@ -535,7 +524,6 @@ function Home() {
 
         </div>
 
-
         <div className="how-steps">
 
           <div className="how-step">
@@ -551,7 +539,6 @@ function Home() {
 
           </div>
 
-
           <div className="how-step">
 
             <span>02</span>
@@ -564,7 +551,6 @@ function Home() {
             </p>
 
           </div>
-
 
           <div className="how-step">
 
@@ -582,7 +568,6 @@ function Home() {
         </div>
 
       </section>
-
 
       {/* ================= FOOTER ================= */}
 
