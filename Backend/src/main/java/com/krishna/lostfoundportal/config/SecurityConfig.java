@@ -109,42 +109,46 @@ public class SecurityConfig {
      * CORS configuration for React frontend.
      */
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
+    CorsConfiguration configuration = new CorsConfiguration();
 
-        // React/Vite frontend
-        configuration.setAllowedOrigins(
-                Arrays.asList("http://localhost:5173")
-        );
+    String frontendUrl = System.getenv("FRONTEND_URL");
 
-        // HTTP methods allowed from frontend
-        configuration.setAllowedMethods(
-                Arrays.asList(
-                        "GET",
-                        "POST",
-                        "PUT",
-                        "DELETE",
-                        "OPTIONS"
-                )
-        );
-
-        // Allow request headers such as Authorization and Content-Type
-        configuration.setAllowedHeaders(
-                Arrays.asList("*")
-        );
-
-        // Allow cookies/credentials if needed
-        configuration.setAllowCredentials(true);
-
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
-
-        // Apply CORS configuration to all backend endpoints
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
+    if (frontendUrl == null || frontendUrl.isBlank()) {
+        frontendUrl = "http://localhost:5173";
     }
+
+    configuration.setAllowedOrigins(
+            Arrays.asList(
+                    "http://localhost:5173",
+                    frontendUrl
+            )
+    );
+
+    configuration.setAllowedMethods(
+            Arrays.asList(
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE",
+                    "OPTIONS"
+            )
+    );
+
+    configuration.setAllowedHeaders(
+            Arrays.asList("*")
+    );
+
+    configuration.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
+
+    source.registerCorsConfiguration("/**", configuration);
+
+    return source;
+}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
