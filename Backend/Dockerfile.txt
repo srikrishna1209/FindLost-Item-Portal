@@ -1,13 +1,28 @@
-FROM eclipse-temurin:17-jdk-jammy
+# ================================
+# BUILD STAGE
+# ================================
+FROM maven:3.9.11-eclipse-temurin-17 AS build
 
 WORKDIR /app
 
-COPY . .
+COPY pom.xml .
 
-RUN chmod +x mvnw 2>/dev/null || true
+RUN mvn dependency:go-offline -B
 
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+
+# ================================
+# RUN STAGE
+# ================================
+FROM eclipse-temurin:17-jre-jammy
+
+WORKDIR /app
+
+COPY --from=build /app/target/lostfoundportal-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "java -Dserver.port=${PORT:-10000} -jar target/lostfoundportal-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-10000} -jar app.jar"]
