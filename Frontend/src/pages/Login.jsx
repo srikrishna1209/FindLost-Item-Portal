@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Auth.css";
@@ -12,6 +12,14 @@ function Login() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // Wake up the Render backend when the Login page is opened
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/health`)
+      .catch(() => {
+        // Backend may still be starting.
+      });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
