@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import iphoneImage from "../assets/iphone.jpg";
 import idCardImage from "../assets/id-card.jpg";
@@ -55,23 +55,23 @@ function Home() {
 
           <div className="hero-actions">
 
-            <a
-              href="/report-lost"
+            <Link
+              to="/report-lost"
               className="lost-action"
             >
               <span>◆</span>
               I lost something
               <b>→</b>
-            </a>
+            </Link>
 
-            <a
-              href="/report-found"
+            <Link
+              to="/report-found"
               className="found-action"
             >
               <span>⌖</span>
               I found something
               <b>→</b>
-            </a>
+            </Link>
 
           </div>
 
@@ -235,9 +235,9 @@ function Home() {
 
           </div>
 
-          <a href="/lost-items">
+          <Link to="/lost-items">
             Browse everything →
-          </a>
+          </Link>
 
         </div>
 
@@ -245,8 +245,8 @@ function Home() {
 
           {/* ELECTRONICS */}
 
-          <a
-            href="/lost-items?category=electronics"
+          <Link
+            to="/lost-items?category=electronics"
             className="category-card electronics"
           >
 
@@ -275,12 +275,12 @@ function Home() {
               ↗
             </span>
 
-          </a>
+          </Link>
 
           {/* DOCUMENTS */}
 
-          <a
-            href="/lost-items?category=documents"
+          <Link
+            to="/lost-items?category=documents"
             className="category-card documents"
           >
 
@@ -309,12 +309,12 @@ function Home() {
               ↗
             </span>
 
-          </a>
+          </Link>
 
           {/* BAGS */}
 
-          <a
-            href="/lost-items?category=bags"
+          <Link
+            to="/lost-items?category=bags"
             className="category-card bags"
           >
 
@@ -343,12 +343,12 @@ function Home() {
               ↗
             </span>
 
-          </a>
+          </Link>
 
           {/* KEYS */}
 
-          <a
-            href="/lost-items?category=keys"
+          <Link
+            to="/lost-items?category=keys"
             className="category-card keys"
           >
 
@@ -377,7 +377,7 @@ function Home() {
               ↗
             </span>
 
-          </a>
+          </Link>
 
         </div>
 
@@ -401,9 +401,9 @@ function Home() {
 
           </div>
 
-          <a href="/lost-items">
+          <Link to="/lost-items">
             View all items →
-          </a>
+          </Link>
 
         </div>
 
@@ -591,17 +591,17 @@ function Home() {
 
         <div className="footer-links">
 
-          <a href="/about">
+          <Link to="/about">
             About
-          </a>
+          </Link>
 
-          <a href="/contact">
+          <Link to="/contact">
             Contact
-          </a>
+          </Link>
 
-          <a href="/privacy">
+          <Link to="/privacy">
             Privacy
-          </a>
+          </Link>
 
         </div>
 

@@ -29,7 +29,6 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-
 function App() {
   return (
     <BrowserRouter>
@@ -98,19 +97,29 @@ function App() {
           element={<ItemDetails />}
         />
 
+
+        {/* ================= CLAIMS ================= */}
+
         <Route
           path="/my-claims"
           element={<MyClaims />}
         />
+
         <Route
           path="/my-items"
           element={<MyItems />}
         />
 
+
+        {/* ================= RETURNED ITEMS ================= */}
+
         <Route
           path="/returned-items"
           element={<ReturnedItems />}
         />
+
+
+        {/* ================= INFORMATION ================= */}
 
         <Route
           path="/how-it-works"
@@ -123,52 +132,59 @@ function App() {
         />
 
         <Route
-         path="/about"
-         element={<About />}
+          path="/about"
+          element={<About />}
         />
 
         <Route
-         path="/privacy"
-         element={<Privacy />}
+          path="/privacy"
+          element={<Privacy />}
         />
-        
-        
+
+
+        {/* ================= ADMIN ================= */}
+
         <Route element={<AdminRoute />}>
+
+          <Route
+            path="/admin"
+            element={<AdminDashboard />}
+          />
+
+          <Route
+            path="/admin/contact-messages"
+            element={<AdminContactMessages />}
+          />
+
+          <Route
+            path="/admin/claims"
+            element={<AdminClaims />}
+          />
+
+          <Route
+            path="/admin/items"
+            element={<AdminItems />}
+          />
+
+          <Route
+            path="/admin/users"
+            element={<AdminUsers />}
+          />
+
+        </Route>
+
+
+        {/* ================= USER ACCOUNT ================= */}
+
         <Route
-          path="/admin"
-          element={<AdminDashboard />}
+          path="/profile"
+          element={<Profile />}
         />
 
-       <Route
-         path="/admin/contact-messages"
-         element={<AdminContactMessages />}
-       />
-
-       <Route
-         path="/admin/claims"
-         element={<AdminClaims />}
-       />
-
-       <Route
-         path="/admin/items"
-         element={<AdminItems />}
-       />
-       <Route
-         path="/admin/users"
-         element={<AdminUsers />}
-       />
-
-       </Route>
-
-       <Route
-         path="/profile"
-         element={<Profile />}
-       />
-
-       <Route
-         path="/settings"
-         element={<Settings />}
-       />
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
 
       </Routes>
 
