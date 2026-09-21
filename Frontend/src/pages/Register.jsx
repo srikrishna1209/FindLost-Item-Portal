@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../services/api";
 import "./Auth.css";
 
 function Register() {
@@ -18,12 +18,15 @@ function Register() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
 
     setError("");
+    setSuccess("");
   };
 
   const handleSubmit = async (e) => {
@@ -31,6 +34,19 @@ function Register() {
 
     setError("");
     setSuccess("");
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+
+    if (!name) {
+      setError("Please enter your full name.");
+      return;
+    }
+
+    if (!email) {
+      setError("Please enter your email address.");
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match.");
@@ -45,27 +61,43 @@ function Register() {
     try {
       setLoading(true);
 
-      await axios.post(
-        "http://localhost:8080/api/users/register",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          role: "USER",
-        }
+      await api.post("/api/users/register", {
+        name,
+        email,
+        password: formData.password,
+        role: "USER",
+      });
+
+      setSuccess(
+        "Account created successfully! Redirecting to login..."
       );
 
-      setSuccess("Account created successfully! Redirecting to login...");
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
 
       setTimeout(() => {
         navigate("/login");
       }, 1500);
 
     } catch (err) {
-      console.error(err);
+      console.error("Registration error:", err);
 
       if (err.response?.data?.message) {
         setError(err.response.data.message);
+      } else if (err.response?.status === 400) {
+        setError(
+          "Please check your details and make sure all fields are valid."
+        );
+      } else if (err.response?.status === 409) {
+        setError("This email is already registered.");
+      } else if (!err.response) {
+        setError(
+          "Unable to connect to the server. Please try again in a moment."
+        );
       } else {
         setError(
           "Registration failed. Please check your details and try again."
@@ -89,11 +121,15 @@ function Register() {
           <div className="auth-decoration-two"></div>
 
           <div className="auth-brand-logo">
-            <div className="auth-logo-box">F</div>
+
+            <div className="auth-logo-box">
+              F
+            </div>
 
             <span>
               Find<span style={{ color: "#e86f55" }}>Lost</span>
             </span>
+
           </div>
 
           <div className="auth-brand-content">
@@ -115,9 +151,11 @@ function Register() {
             </p>
 
             <div className="auth-visual">
+
               <div className="auth-visual-text">
                 Found near campus
               </div>
+
             </div>
 
           </div>
@@ -148,6 +186,7 @@ function Register() {
               onSubmit={handleSubmit}
             >
 
+              {/* FULL NAME */}
               <div className="auth-field">
 
                 <label htmlFor="name">
@@ -161,12 +200,14 @@ function Register() {
                   placeholder="Enter your full name"
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={loading}
                   required
                 />
 
               </div>
 
 
+              {/* EMAIL */}
               <div className="auth-field">
 
                 <label htmlFor="email">
@@ -180,12 +221,14 @@ function Register() {
                   placeholder="you@example.com"
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={loading}
                   required
                 />
 
               </div>
 
 
+              {/* PASSWORD */}
               <div className="auth-field">
 
                 <label htmlFor="password">
@@ -199,12 +242,14 @@ function Register() {
                   placeholder="Create a password"
                   value={formData.password}
                   onChange={handleChange}
+                  disabled={loading}
                   required
                 />
 
               </div>
 
 
+              {/* CONFIRM PASSWORD */}
               <div className="auth-field">
 
                 <label htmlFor="confirmPassword">
@@ -218,12 +263,14 @@ function Register() {
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
+                  disabled={loading}
                   required
                 />
 
               </div>
 
 
+              {/* ERROR */}
               {error && (
                 <div className="auth-message auth-error">
                   {error}
@@ -231,6 +278,7 @@ function Register() {
               )}
 
 
+              {/* SUCCESS */}
               {success && (
                 <div className="auth-message auth-success">
                   {success}
@@ -238,6 +286,7 @@ function Register() {
               )}
 
 
+              {/* SUBMIT BUTTON */}
               <button
                 type="submit"
                 className="auth-submit"
