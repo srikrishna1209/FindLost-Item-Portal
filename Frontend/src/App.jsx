@@ -1,5 +1,6 @@
 import About from "./pages/About";
 import Privacy from "./pages/Privacy";
+
 import AdminUsers from "./pages/AdminUsers";
 import Settings from "./pages/Settings";
 import AdminItems from "./pages/AdminItems";
@@ -8,20 +9,34 @@ import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
 import AdminContactMessages from "./pages/AdminContactMessages";
+
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
+
 import MyItems from "./pages/MyItems";
 import MyClaims from "./pages/MyClaims";
+import ReturnedItems from "./pages/ReturnedItems";
+
 import LostItems from "./pages/LostItems";
 import FoundItems from "./pages/FoundItems";
+
 import ReportLost from "./pages/ReportLost";
 import ReportFound from "./pages/ReportFound";
+
 import ItemDetails from "./pages/ItemDetails";
-import ReturnedItems from "./pages/ReturnedItems";
 
 import Navbar from "./components/Navbar";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import {
+  useAuth,
+} from "./context/AuthContext";
 
 import "./App.css";
 
@@ -29,13 +44,50 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+
+/*
+ * =========================================================
+ * AUTHENTICATION GUARD
+ * =========================================================
+ *
+ * Report Lost and Report Found require login.
+ *
+ * If a user is not logged in and tries to open either page,
+ * they are automatically sent to the Login page.
+ */
+
+function RequireAuth({ children }) {
+
+  const {
+    isAuthenticated,
+  } = useAuth();
+
+
+  if (!isAuthenticated) {
+
+    return (
+      <Navigate
+        to="/login"
+        replace
+      />
+    );
+  }
+
+
+  return children;
+}
+
+
 function App() {
+
   return (
+
     <BrowserRouter>
 
       <Navbar />
 
       <Routes>
+
 
         {/* ================= HOME ================= */}
 
@@ -67,10 +119,15 @@ function App() {
 
 
         {/* ================= REPORT LOST ================= */}
+        {/* LOGIN REQUIRED */}
 
         <Route
           path="/report-lost"
-          element={<ReportLost />}
+          element={
+            <RequireAuth>
+              <ReportLost />
+            </RequireAuth>
+          }
         />
 
 
@@ -83,10 +140,15 @@ function App() {
 
 
         {/* ================= REPORT FOUND ================= */}
+        {/* LOGIN REQUIRED */}
 
         <Route
           path="/report-found"
-          element={<ReportFound />}
+          element={
+            <RequireAuth>
+              <ReportFound />
+            </RequireAuth>
+          }
         />
 
 
@@ -185,6 +247,7 @@ function App() {
           path="/settings"
           element={<Settings />}
         />
+
 
       </Routes>
 
