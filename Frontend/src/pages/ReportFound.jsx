@@ -215,7 +215,7 @@ function ReportFound() {
                   type="text"
                   value={formData.itemName}
                   onChange={handleChange}
-                  placeholder="e.g. Black laptop"
+                  placeholder="e.g. Dell laptop"
                   required
                   disabled={loading}
                 />

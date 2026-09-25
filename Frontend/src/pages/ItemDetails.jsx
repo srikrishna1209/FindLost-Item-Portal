@@ -181,7 +181,7 @@ function ItemDetails() {
         );
       } else if (err.response?.status === 403) {
         setClaimError(
-          "You don't have permission to submit this claim."
+          "You have to sign in first to submit this claim."
         );
       } else if (err.response?.data?.message) {
         setClaimError(
