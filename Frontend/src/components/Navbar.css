@@ -611,12 +611,6 @@
 
     margin-left: 20px;
   }
-
-
-  .navbar-links .nav-link:nth-child(4),
-  .navbar-links .nav-link:nth-child(5) {
-    display: none;
-  }
 }
 
 
