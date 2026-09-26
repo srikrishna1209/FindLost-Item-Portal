@@ -1,5 +1,4 @@
-# 📦 FindLost – College Lost & Found Portal
-
+# 📦 FindLost – Lost & Found Items Portal
 A full-stack college Lost & Found management web application that allows students to report lost and found items, search for items, view item details, submit claims, and track their reported items and claims. The system also provides administrators with a dashboard to manage items, claims, and contact messages.
 
 🌐 **Live Website:** https://find-lost-item-portal.vercel.app
